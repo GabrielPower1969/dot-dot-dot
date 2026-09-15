@@ -2,7 +2,17 @@
   "$comment": "Per-platform copy. Fixed wording (CTA, handle) lives in templates; this file holds only what changes per video.",
   "topic": "tangping",
   "cover_time_s": 24,
-  "publish_order": ["xiaohongshu", "douyin", "bilibili", "youtube", "tiktok", "instagram", "linkedin", "facebook", "kuaishou"],
+  "publish_order": [
+    "xiaohongshu",
+    "douyin",
+    "bilibili",
+    "youtube",
+    "tiktok",
+    "instagram",
+    "linkedin",
+    "facebook",
+    "kuaishou"
+  ],
   "schedule": "2026-09-17 19:00 NZST",
   "zh": {
     "kicker": "找工作前先想清楚",
@@ -12,7 +22,45 @@
     "hook": "「找个差不多的工作就能躺」——这是我听过最危险的躺平计划。",
     "body": "差不多的薪资 ≠ 自由度；看起来清闲 ≠ 能摸鱼；低薪 = 最先被裁。\n这不叫躺平，叫温水煮青蛙。\n\n真正养人的公司只看一点：结构性的稀缺位置。合规成本高、有战略价值、招人保守、对员工不错——就像伊朗扼守霍尔木兹海峡。\n\n视频里我把识别方法讲清楚了。",
     "cta": "你现在的工作是哪一种？评论区聊聊。",
-    "hashtags": ["躺平", "职场", "找工作", "职业规划", "打工人", "求职", "新西兰生活", "海外工作"]
+    "hashtags": [
+      "躺平",
+      "职场",
+      "找工作",
+      "职业规划",
+      "打工人",
+      "求职",
+      "新西兰生活",
+      "海外工作"
+    ],
+    "cover": {
+      "frame_s": 24,
+      "kicker": "职场观察 · 第 1 期",
+      "title_html": "真正高级的躺平<br>就两个字：<em>垄断</em>",
+      "title_options": [
+        "真正高级的躺平<br>就两个字：<em>垄断</em>",
+        "差不多的工作<br><em>躺不了</em>",
+        "你以为在躺平<br>其实是<em>温水煮青蛙</em>"
+      ],
+      "variants": [
+        {
+          "font": "noto-serif",
+          "style": "editorial"
+        },
+        {
+          "font": "noto-light",
+          "style": "swiss"
+        },
+        {
+          "font": "noto-serif",
+          "style": "photo"
+        },
+        {
+          "font": "noto-black",
+          "style": "outline"
+        }
+      ],
+      "pick": 1
+    }
   },
   "en": {
     "kicker": "Before you take that 'easy' job",
@@ -22,13 +70,69 @@
     "hook": "\"I'll take a so-so job and coast\" is the riskiest career plan I hear from young people.",
     "body": "So-so pay ≠ freedom. Looks easy ≠ you can slack. Low pay = first to be cut.\nThat's not lying flat. That's boiling the frog.\n\nJobs that actually let you rest sit at structurally scarce positions: expensive to comply, strategically valuable, conservative hiring, decent to staff. Think Iran and the Strait of Hormuz.\n\nIn the video I show how to spot them.",
     "cta": "Which kind is your job? Tell me in the comments.",
-    "hashtags": ["careeradvice", "lyingflat", "jobsearch", "worklife", "careertips", "nzjobs", "burnout", "quietquitting"]
+    "hashtags": [
+      "careeradvice",
+      "lyingflat",
+      "jobsearch",
+      "worklife",
+      "careertips",
+      "nzjobs",
+      "burnout",
+      "quietquitting"
+    ],
+    "cover": {
+      "frame_s": 24,
+      "kicker": "Career notes · No. 1",
+      "title_html": "Real lying flat<br>is one word: <em>MONOPOLY</em>",
+      "title_options": [
+        "Real lying flat<br>is one word: <em>MONOPOLY</em>",
+        "The 'easy' job<br>is a <em>TRAP</em>",
+        "Boiling the <em>FROG</em>"
+      ],
+      "variants": [
+        {
+          "font": "playfair",
+          "style": "editorial"
+        },
+        {
+          "font": "inter",
+          "style": "swiss"
+        },
+        {
+          "font": "playfair",
+          "style": "photo"
+        },
+        {
+          "font": "anton",
+          "style": "outline"
+        }
+      ],
+      "pick": 1
+    }
   },
   "platforms": {
-    "xiaohongshu": { "title": "高级躺平就两个字：垄断", "hashtags": ["躺平", "职场干货", "找工作", "职业规划", "打工人日常", "海外职场"] },
-    "douyin":      { "title": "找个差不多的工作就能躺？这是温水煮青蛙" },
-    "bilibili":    { "title": "真正高级的躺平，本质上就两个字【职场观察】" },
-    "youtube":     { "title": "The 'Good Enough' Job Is the Most Dangerous Way to Lie Flat" },
-    "linkedin":    { "body": "Talking to early-career folks, I keep hearing the same plan: find a comfortable, average job and coast.\n\nIn my experience that plan carries three risks people don't price in:\n1. Average pay rarely buys real autonomy.\n2. 'Easy' roles leave no energy to build your own edge.\n3. Low pay means low security when the cycle turns.\n\nThe roles that genuinely let you breathe sit at structurally scarce positions: high compliance cost, strategic value, conservative hiring. Like a strait everyone has to sail through.\n\nShort video below (Chinese with English subtitles)." }
+    "xiaohongshu": {
+      "title": "高级躺平就两个字：垄断",
+      "hashtags": [
+        "躺平",
+        "职场干货",
+        "找工作",
+        "职业规划",
+        "打工人日常",
+        "海外职场"
+      ]
+    },
+    "douyin": {
+      "title": "找个差不多的工作就能躺？这是温水煮青蛙"
+    },
+    "bilibili": {
+      "title": "真正高级的躺平，本质上就两个字【职场观察】"
+    },
+    "youtube": {
+      "title": "The 'Good Enough' Job Is the Most Dangerous Way to Lie Flat"
+    },
+    "linkedin": {
+      "body": "Talking to early-career folks, I keep hearing the same plan: find a comfortable, average job and coast.\n\nIn my experience that plan carries three risks people don't price in:\n1. Average pay rarely buys real autonomy.\n2. 'Easy' roles leave no energy to build your own edge.\n3. Low pay means low security when the cycle turns.\n\nThe roles that genuinely let you breathe sit at structurally scarce positions: high compliance cost, strategic value, conservative hiring. Like a strait everyone has to sail through.\n\nShort video below (Chinese with English subtitles)."
+    }
   }
 }

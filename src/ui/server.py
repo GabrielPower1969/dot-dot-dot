@@ -68,6 +68,18 @@ class H(BaseHTTPRequestHandler):
             if path == "/api/assets":
                 return self.send(200, {k: sorted(x.name for x in (ROOT/"assets"/k).glob("*") if x.suffix.lower() in (".wav",".mp3",".m4a",".mp4",".mov",".png",".jpg") and not x.name.startswith(".")) for k in ("sfx","music","library","broll")}
                                        | {"cards": sorted(x.stem for x in (ROOT/"templates/cards").glob("*.html") if not x.name.startswith(("_","."))), "manifest": json.loads((ROOT/"assets/manifest.json").read_text())})
+            if path == "/api/fonts": return self.send(200, json.loads((ROOT/"assets/fonts/fonts.json").read_text()))
+            if path == "/api/frames":  # contact sheet: n frames evenly spaced from the cut 16:9 intermediate
+                slug = q["slug"][0]; n = int(q.get("n", ["24"])[0]); d = safe("projects/" + slug); inter = d/"work/intermediate/cut.16x9.mov"
+                if not inter.exists(): return self.send(400, {"error": "run assemble first (needs work/intermediate/cut.16x9.mov)"})
+                fd = d/"work/frames"; fd.mkdir(exist_ok=True)
+                dur = float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",str(inter)],capture_output=True,text=True).stdout.strip() or 0)
+                out = []
+                for i in range(n):
+                    t = round(dur * (i + 0.5) / n, 1); f = fd/f"f{t}.jpg"
+                    if not f.exists(): subprocess.run(["ffmpeg","-v","error","-y","-ss",str(t),"-i",str(inter),"-frames:v","1","-vf","scale=480:-1","-q:v","3",str(f)])
+                    out.append({"t": t, "url": f"/media/projects/{slug}/work/frames/{f.name}"})
+                return self.send(200, out)
             if path == "/api/jobs": return self.send(200, JOBS)
             if path.startswith("/api/jobs/"): return self.send(200, JOBS.get(path.split("/")[3], {"status": "unknown"}))
             if path == "/api/metrics":

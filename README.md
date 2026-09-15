@@ -59,6 +59,18 @@ Click a node to change its anchor, text, hold time, sound; save; press *re-plan*
 and markers over the player, covers and posts, the speech-coach report, a publish queue, metrics, and an **inbox** where you
 type requests the agent picks up (`ui/inbox.jsonl`). The backend is the agent plus the pipeline; the app is a window onto the files.
 
+## Design system and covers
+
+Covers are the creator's call. The **封面选型 / Cover** tab shows a 24-frame contact sheet, three title options, a font list
+(`assets/fonts/fonts.json`, all OFL: Noto Serif/Sans SC, Playfair Display, Inter, 得意黑, 站酷, 楷/行/草…) and four layouts —
+`editorial` (paper panel, serif, one italic accent word), `swiss` (ink panel, light sans), `photo` (full-bleed, gradient),
+`outline` (YouTube classic). Every variant renders in every platform size plus a **120 px legibility strip**; you pick the winner.
+Colours come from `config/themes.json` — nine palettes adapted from [guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill)
+(editorial: Ink Classic, Indigo Porcelain, Forest Ink, Kraft Paper, Dune, Midnight Ink; Swiss: IKB Blue, Lemon Green, Safety Orange).
+One theme per video drives cards, outro, pops, lower third, covers and the studio UI. 小红书 carousels and 公众号 cover pairs are
+delegated to that skill (installed separately, AGPL-3.0). Thumbnail rules and the tools we evaluated are in
+`.claude/skills/cover-design/references/thumbnail-rules.md`.
+
 ## Design principles
 
 1. **Your style is config, not prompts.** Fonts, colours, cut rules, sound levels, outro — `config/profile.json`. Changed once, applied forever.
@@ -86,6 +98,7 @@ type requests the agent picks up (`ui/inbox.jsonl`). The backend is the agent pl
 
 - 一条命令：`python3 src/build.py projects/<日期-主题>`；本地界面：`python3 src/ui/server.py`（蓝图节点编排，不是时间线剪辑器；界面无状态，和 agent 共用同一批文件）
 - 样例：`projects/2026-09-15-tangping/`（《躺平》：149 秒素材 → 4 条成片 + 10 张封面 + 12 篇文案）
+- 封面由你选：选帧、选标题、选字体、选版式（编辑纸面 / 瑞士 / 照片 / 描边），每个变体出全平台尺寸 + 120px 缩略对比；配色是 `config/themes.json` 里的九套主题（改编自归藏社交卡片 skill），一条视频一套主题
 - 授权：个人免费（PolyForm Noncommercial），商用需付费授权，见 `LICENSE.md`
 - 本地渲染、本地转写，录音不出电脑；LLM 只负责文字，贵模型做判断、便宜模型做翻译摘要，桌面端 agent 做品味
 - 想改风格 → 改 `config/`；想改这条片 → 改 `edit.json`；想加平台 → 加一行 `config/platforms.json` + 一个适配器

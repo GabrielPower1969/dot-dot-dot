@@ -13,6 +13,8 @@ function render(tpl, vars) {
   tpl = tpl.replace(/{{#if (\w+)}}([\s\S]*?)(?:{{else}}([\s\S]*?))?{{\/if}}/g, (_, k, a, b = "") => vars[k] ? a : b);
   return tpl.replace(/{{(\w+)}}/g, (_, k) => k in vars ? esc(vars[k]) : `[TODO ${k}]`);
 }
+import { loadTheme } from "../lib/theme.js";
+const THEME = loadTheme(profile);
 const { chromium } = await import("playwright");
 const browser = await chromium.launch(); const page = await browser.newPage();
 await page.route("**/*", r => r.request().url().startsWith("file://") ? r.continue() : r.abort());

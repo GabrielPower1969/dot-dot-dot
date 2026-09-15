@@ -7,11 +7,11 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Sub,Arimo,57,&H00FFFFFF,&H00FFFFFF,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,4,0,2,60,60,70,1
-Style: Pop,Arimo,108,&H0018C5F5,&H0018C5F5,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,8,0,5,0,0,0,1
-Style: Corner,Arimo,97,&H0018C5F5,&H0018C5F5,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,8,0,7,0,0,0,1
-Style: LT1,Arimo,78,&H00111111,&H00111111,&H0018C5F5,&H00000000,1,0,0,0,100,100,0,0,3,14,0,7,0,0,0,1
-Style: LT2,Arimo,40,&H00FFFFFF,&H00FFFFFF,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
+Style: Sub,Arimo,57,&H00FFFFFF,&H00FFFFFF,&H003d1f0a,&H80000000,1,0,0,0,100,100,0,0,1,4,0,2,60,60,70,1
+Style: Pop,Playfair Display,100,&H00f5f4f2,&H00f5f4f2,&H003d1f0a,&H80000000,0,0,0,0,100,100,2,0,1,3,2,5,0,0,0,1
+Style: Corner,Playfair Display,90,&H00f5f4f2,&H00f5f4f2,&H003d1f0a,&H80000000,0,0,0,0,100,100,0,0,1,3,2,7,0,0,0,1
+Style: LT1,Playfair Display,72,&H00f5f4f2,&H00f5f4f2,&H003d1f0a,&H00000000,0,0,0,0,100,100,2,0,3,16,0,7,0,0,0,1
+Style: LT2,Arimo,36,&H00FFFFFF,&H00FFFFFF,&H003d1f0a,&H80000000,1,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -70,16 +70,16 @@ Dialogue: 0,0:01:54.66,0:01:56.42,Sub,,0,0,0,,Whether the economy goes up or dow
 Dialogue: 0,0:01:56.46,0:01:57.96,Sub,,0,0,0,,these companies are rock solid.
 Dialogue: 0,0:01:58.00,0:02:01.34,Sub,,0,0,0,,At the end of the day, real high-level lying flat
 Dialogue: 0,0:02:01.38,0:02:04.61,Sub,,0,0,0,,comes down to one word: monopoly.
-Dialogue: 0,0:02:04.65,0:02:06.22,Sub,,0,0,0,,{\c&H0018C5F5}Got it?{\c&H00FFFFFF}
+Dialogue: 0,0:02:04.65,0:02:06.22,Sub,,0,0,0,,{\c&H00eac7a9}Got it?{\c&H00FFFFFF}
 Dialogue: 0,0:02:06.26,0:02:07.24,Sub,,0,0,0,,If you enjoyed this video,
 Dialogue: 0,0:02:07.28,0:02:11.30,Sub,,0,0,0,,please like and save it. See you next time, bye!
-Dialogue: 2,0:00:05.76,0:00:07.37,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Lying flat
+Dialogue: 2,0:00:05.76,0:00:07.37,Pop,,0,0,0,,{\pos(1440,400)\frz-2\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Lying flat
 Dialogue: 2,0:00:28.75,0:00:35.75,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}①
 Dialogue: 2,0:00:36.43,0:00:44.43,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}②
 Dialogue: 2,0:00:45.61,0:00:53.61,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}③
-Dialogue: 2,0:00:55.49,0:00:57.22,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Boiling the frog
-Dialogue: 2,0:01:08.40,0:01:10.20,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Dream company
-Dialogue: 2,0:02:03.41,0:02:05.90,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}MONOPOLY
-Dialogue: 2,0:02:04.65,0:02:05.98,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Got it?
+Dialogue: 2,0:00:55.49,0:00:57.22,Pop,,0,0,0,,{\pos(1440,400)\frz-2\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Boiling the frog
+Dialogue: 2,0:01:08.40,0:01:10.20,Pop,,0,0,0,,{\pos(1440,400)\frz-2\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Dream company
+Dialogue: 2,0:02:03.41,0:02:05.90,Pop,,0,0,0,,{\pos(1440,400)\frz-2\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}MONOPOLY
+Dialogue: 2,0:02:04.65,0:02:05.98,Pop,,0,0,0,,{\pos(1440,400)\frz-2\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Got it?
 Dialogue: 3,0:00:00.30,0:00:03.50,LT1,,0,0,0,,{\move(-420,90,80,90,0,320)\fad(0,250)}  The Bar for Lying Flat  
 Dialogue: 3,0:00:00.50,0:00:03.50,LT2,,0,0,0,,{\move(-420,210,80,210,0,320)\fad(0,250)}Why a 'good-enough' job won't let you rest

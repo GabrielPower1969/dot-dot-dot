@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="_base.css"><style>
-html,body{width:{{w}}px;height:{{h}}px;background:var(--ink)}
-.wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;color:var(--paper);text-align:center;padding:60px}
-.logo{width:220px;height:220px;border-radius:50%;background:var(--y);border:10px solid var(--paper);display:flex;align-items:center;justify-content:center;font:700 120px "Arimo",sans-serif;color:var(--ink);box-shadow:14px 14px 0 var(--red)}
-.logo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.head{font-size:{{headsize}}px;font-weight:700;line-height:1.2;max-width:90%}
-.cta{font-size:44px;background:var(--y);color:var(--ink);border:8px solid var(--paper);border-radius:20px;padding:10px 40px;font-weight:700;box-shadow:10px 10px 0 var(--red)}
-.handle{font-size:36px;opacity:.75;font-family:"Arimo",sans-serif}
-</style><div class="wrap"><div class="logo">{{#if logo}}<img src="{{logo}}">{{else}}{{initial}}{{/if}}</div><div class="head">{{headline}}</div><div class="cta">{{cta}}</div><div class="handle">{{handle}}</div></div>
+html,body{width:{{w}}px;height:{{h}}px;background:var(--paper)}
+.wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;text-align:center;padding:80px}
+.rule{width:120px;height:1px;background:var(--ink);margin:0}
+.logo{width:180px;height:180px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--paper-2)}
+.logo img{width:120px;height:120px;border-radius:24px} .logo span{font:500 90px "Playfair Display",serif}
+.head{font-size:{{headsize}}px;font-weight:500;letter-spacing:.04em;line-height:1.25;max-width:88%} .head em{font-style:italic;color:var(--accent)}
+.cta{font:500 20px/1 "Inter",sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.handle{font:400 22px "Inter",sans-serif;color:var(--accent);letter-spacing:.06em}
+</style><div class="wrap"><div class="logo">{{#if logo}}<img src="{{logo}}">{{else}}<span>{{initial}}</span>{{/if}}</div><div class="rule"></div><div class="head">{{headline}}</div><div class="cta">{{cta}}</div><div class="handle">{{handle}}</div></div>

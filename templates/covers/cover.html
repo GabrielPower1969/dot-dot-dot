@@ -1,11 +1,28 @@
 <link rel="stylesheet" href="../cards/_base.css"><style>
-html,body{width:{{w}}px;height:{{h}}px;background:var(--ink)}
-.frame{position:absolute;inset:0;background:url("{{frame}}") center {{focus}}/cover no-repeat}
-.shade{position:absolute;inset:0;background:linear-gradient({{grad_dir}},rgba(17,17,17,.92) 0%,rgba(17,17,17,.55) 45%,rgba(17,17,17,0) 75%)}
-.txt{position:absolute;left:{{pad}}px;{{txt_pos}};width:{{txt_w}}px;display:flex;flex-direction:column;gap:{{gap}}px}
-.kicker{background:var(--y);color:var(--ink);font-weight:700;font-size:{{kicker_fs}}px;padding:6px 22px;border:6px solid var(--ink);box-shadow:8px 8px 0 var(--red);width:max-content;max-width:100%;transform:rotate(-2deg)}
-.title{color:#fff;font-weight:700;font-size:{{title_fs}}px;line-height:1.08;letter-spacing:-1px;text-shadow:0 6px 0 var(--ink),0 0 30px rgba(0,0,0,.6)}
-.title em{font-style:normal;color:var(--y)}
-.brand{position:absolute;right:{{pad}}px;bottom:{{pad}}px;color:#fff;font:700 {{brand_fs}}px "Arimo",sans-serif;opacity:.85;background:rgba(17,17,17,.6);padding:6px 16px;border-radius:12px}
-</style><div class="frame"></div><div class="shade"></div>
-<div class="txt"><span class="kicker">{{kicker}}</span><div class="title">{{{title}}}</div></div><div class="brand">{{handle}}</div>
+@font-face{font-family:"CoverFont";src:url("{{font_url}}");font-weight:100 900}
+html,body{width:{{w}}px;height:{{h}}px;background:var(--paper)}
+.frame{position:absolute;inset:0;background:url("{{frame}}") {{focus_x}} {{focus}}/{{zoom}} no-repeat}
+.panel{position:absolute;left:0;top:0;bottom:0;width:{{panel_w}}px;background:var(--paper);border-right:1px solid var(--line);padding:{{pad}}px {{pad}}px;display:flex;flex-direction:column;justify-content:center;gap:{{gap}}px}
+body.portrait .panel{width:100%;bottom:auto;height:{{panel_h}}px;border-right:0;border-bottom:1px solid var(--line);justify-content:flex-end}
+body.portrait .frame{top:{{panel_h}}px}
+body.landscape .frame{left:{{panel_w}}px;background-size:cover;background-position:center 30%}
+body.landscape.s-photo .frame,body.landscape.s-outline .frame{left:0;background-size:{{zoom}};background-position:{{focus_x}} {{focus}}}
+.kicker{font:500 {{kicker_fs}}px/1 "Inter","Arimo",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.kicker:after{content:"";display:block;width:56px;height:1px;background:var(--ink);margin-top:{{gap}}px}
+.title{font-family:"CoverFont","Noto Serif SC",serif;font-weight:{{font_weight}};font-size:{{title_fs}}px;line-height:1.12;letter-spacing:.03em;color:var(--ink)}
+.title em{font-style:italic;color:var(--accent)}
+.brand{position:absolute;right:{{pad}}px;bottom:{{pad}}px;font:500 {{brand_fs}}px "Inter",sans-serif;letter-spacing:.12em;color:var(--paper);mix-blend-mode:difference}
+/* swiss: solid ink panel, light sans, accent bar */
+body.s-swiss .panel{background:var(--ink);border:0} body.s-swiss .title{color:var(--paper);font-weight:300;letter-spacing:-.01em;line-height:1.05} body.s-swiss .title em{font-style:normal;color:var(--accent);font-weight:600}
+body.s-swiss .kicker{color:var(--paper);opacity:.7} body.s-swiss .kicker:after{background:var(--accent);height:6px;width:80px}
+/* photo: full-bleed photo, ink gradient, paper serif text */
+body.s-photo .panel{background:transparent;border:0;width:{{txt_w}}px} body.portrait.s-photo .panel{width:100%;height:{{panel_h}}px;background:transparent}
+body.s-photo .frame{inset:0;top:0} body.s-photo .shade{position:absolute;inset:0;background:linear-gradient({{grad_dir}},color-mix(in srgb,var(--ink) 88%,transparent) 0%,color-mix(in srgb,var(--ink) 45%,transparent) 50%,transparent 80%)}
+body.s-photo .title{color:var(--paper)} body.s-photo .title em{color:var(--accent-soft)} body.s-photo .kicker{color:var(--paper);opacity:.8} body.s-photo .kicker:after{background:var(--paper)}
+/* outline: YouTube classic, white + ink stroke, no panel */
+body.s-outline .panel{background:transparent;border:0;width:{{txt_w}}px} body.portrait.s-outline .panel{width:100%;background:transparent}
+body.s-outline .frame{inset:0;top:0} body.s-outline .shade{position:absolute;inset:0;background:linear-gradient({{grad_dir}},rgba(0,0,0,.55),transparent 70%)}
+body.s-outline .title{color:#fff;-webkit-text-stroke:{{stroke}}px var(--ink);text-shadow:0 6px 0 var(--ink);font-weight:{{font_weight}};letter-spacing:0;line-height:1.05} body.s-outline .title em{font-style:normal;color:var(--accent-soft)}
+body.s-outline .kicker{color:#fff} body.s-outline .kicker:after{background:#fff}
+</style><body class="s-{{style}} {{orient}}"><div class="frame"></div><div class="shade"></div>
+<div class="panel"><span class="kicker">{{kicker}}</span><div class="title">{{{title}}}</div></div><div class="brand">{{handle}}</div></body>

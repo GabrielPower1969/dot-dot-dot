@@ -1,12 +1,19 @@
+@import "_theme.css";
 @font-face{font-family:"Noto Sans SC";src:url("../../assets/fonts/NotoSansSC-Bold.otf");font-weight:700}
 @font-face{font-family:"Noto Sans SC";src:url("../../assets/fonts/NotoSansSC-Regular.otf");font-weight:400}
-@font-face{font-family:"Arimo";src:url("../../assets/fonts/Arimo-Bold.ttf");font-weight:700}
+@font-face{font-family:"Noto Serif SC";src:url("../../assets/fonts/NotoSerifSC-Variable.ttf");font-weight:200 900}
+@font-face{font-family:"Playfair Display";src:url("../../assets/fonts/PlayfairDisplay-Variable.ttf");font-weight:400 900}
+@font-face{font-family:"Inter";src:url("../../assets/fonts/Inter-Variable.ttf");font-weight:100 900}
 @font-face{font-family:"Arimo";src:url("../../assets/fonts/Arimo-Regular.ttf");font-weight:400}
-:root{--y:#F5C518;--ink:#111;--paper:#fff;--red:#E63946}
 *{box-sizing:border-box;margin:0}
 html,body{width:1000px;height:625px;background:transparent;overflow:hidden}
-body{font-family:"Noto Sans SC","Arimo",sans-serif;color:var(--ink)}
-.card{position:absolute;inset:14px;background:var(--paper);border:8px solid var(--ink);border-radius:28px;box-shadow:14px 14px 0 var(--ink);padding:44px 52px;display:flex;flex-direction:column}
-.tag{display:inline-block;background:var(--y);border:5px solid var(--ink);border-radius:12px;padding:4px 18px;font-weight:700;font-size:34px;width:max-content;box-shadow:6px 6px 0 var(--ink)}
-h1{font-size:64px;font-weight:700;line-height:1.15;margin-top:22px;letter-spacing:-.5px}
-.sub{font-size:32px;margin-top:14px;opacity:.85}
+body{font-family:"Noto Serif SC","Playfair Display",serif;color:var(--ink)}
+/* editorial card: paper, hairline rule, no shadow */
+.card{position:absolute;inset:10px;background:var(--paper);border:1px solid var(--line);padding:40px 48px;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line)}
+.card:before{content:"";position:absolute;left:48px;right:48px;top:30px;height:1px;background:var(--line)}
+.label{font:500 15px/1 "Inter","Arimo",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--accent);font-weight:600}
+h1{font-family:"Noto Serif SC","Playfair Display",serif;font-weight:500;font-size:60px;line-height:1.15;letter-spacing:.03em;margin-top:18px}
+h1 em{font-style:italic;color:var(--accent)}
+.sub{font-size:26px;line-height:1.5;margin-top:12px;color:var(--muted);font-weight:400}
+.rule{height:1px;background:var(--line);margin:18px 0}

@@ -6,13 +6,17 @@ def col(hexrgb, alpha="00"):  # "#RRGGBB" -> "&HAABBGGRR"
     r, g, b = hexrgb[1:3], hexrgb[3:5], hexrgb[5:7]; return f"&H{alpha}{b}{g}{r}"
 
 def build(plan, prof, lang, aspect, cues_text):
+    from lib.theme import load as load_theme
+    T = load_theme(prof)
     W, H = (1920, 1080) if aspect == "16x9" else (1080, 1920)
     sub, pop, br = prof["subtitles"], prof["keyword_pop"], prof["brand"]
     font = br["font_zh"] if lang == "zh" else br["font_en"]
     fs = sub[f"font_size_{aspect.replace('x',':') if False else aspect}"] if False else sub[f"font_size_{aspect}"]
     mv = sub[f"margin_v_{aspect}"]
     if lang == "en": fs = int(fs * 0.9)
-    yellow, ink, white = col(br["primary"]), col(br["ink"]), "&H00FFFFFF"
+    yellow, ink, white = col(T["videoHighlight"]), col(T["ink"]), "&H00FFFFFF"   # "yellow" = keyword highlight colour (theme), kept as variable name
+    paper, accent = col(T["paper"]), col(T["accent"])
+    dfont = br.get("display_zh" if lang == "zh" else "display_en", font)
     pop_fs = pop["font_size"] if aspect == "16x9" else int(pop["font_size"] * 0.85)
     if lang == "en": pop_fs = int(pop_fs * 0.72)
     hdr = f"""[Script Info]
@@ -25,10 +29,10 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Sub,{font},{fs},{white},{white},{ink},&H80000000,1,0,0,0,100,100,0,0,1,{sub['outline']},{sub['shadow']},2,60,60,{mv},1
-Style: Pop,{font},{pop_fs},{yellow},{yellow},{ink},&H80000000,1,0,0,0,100,100,0,0,1,{pop['outline']},0,5,0,0,0,1
-Style: Corner,{font},{int(pop_fs*0.9)},{yellow},{yellow},{ink},&H80000000,1,0,0,0,100,100,0,0,1,{pop['outline']},0,7,0,0,0,1
-Style: LT1,{font},{78 if aspect=='16x9' else 66},{ink},{ink},{yellow},&H00000000,1,0,0,0,100,100,0,0,3,14,0,7,0,0,0,1
-Style: LT2,{font},{40 if aspect=='16x9' else 36},{white},{white},{ink},&H80000000,1,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
+Style: Pop,{dfont},{pop_fs},{paper},{paper},{ink},&H80000000,0,0,0,0,100,100,2,0,1,{pop['outline']},2,5,0,0,0,1
+Style: Corner,{dfont},{int(pop_fs*0.9)},{paper},{paper},{ink},&H80000000,0,0,0,0,100,100,0,0,1,{pop['outline']},2,7,0,0,0,1
+Style: LT1,{dfont},{72 if aspect=='16x9' else 60},{paper},{paper},{ink},&H00000000,0,0,0,0,100,100,2,0,3,16,0,7,0,0,0,1
+Style: LT2,{font},{36 if aspect=='16x9' else 32},{white},{white},{ink},&H80000000,1,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -51,7 +55,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             ev.append(f"Dialogue: 2,{ts(p['s'])},{ts(p['e'])},Corner,,0,0,0,,{{\\pos({x},{y})\\fscx60\\fscy60\\t(0,{b},\\fscx108\\fscy108)\\t({b},{b+120},\\fscx100\\fscy100)\\fad(0,200)}}{txt}")
         else:
             x, y = (1440, 400) if aspect == "16x9" else (540, 430)
-            ev.append(f"Dialogue: 2,{ts(p['s'])},{ts(p['e'])},Pop,,0,0,0,,{{\\pos({x},{y})\\frz-4\\fscx50\\fscy50\\t(0,{b},\\fscx112\\fscy112)\\t({b},{b+120},\\fscx100\\fscy100)\\fad(0,220)}}{txt}")
+            ev.append(f"Dialogue: 2,{ts(p['s'])},{ts(p['e'])},Pop,,0,0,0,,{{\\pos({x},{y})\\frz-2\\fscx50\\fscy50\\t(0,{b},\\fscx112\\fscy112)\\t({b},{b+120},\\fscx100\\fscy100)\\fad(0,220)}}{txt}")
     # lower third (intro)
     if plan.get("intro") and plan["title"].get(lang):
         d = prof["intro"]["lower_third_s"]

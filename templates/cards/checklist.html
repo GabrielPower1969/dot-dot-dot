@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="_base.css"><style>
-h1{font-size:50px;margin-top:0} ul{list-style:none;margin-top:26px;display:grid;gap:18px}
-li{font-size:46px;font-weight:700;display:flex;align-items:center;gap:22px}
-li b{display:inline-flex;width:64px;height:64px;border:6px solid var(--ink);border-radius:14px;background:var(--y);align-items:center;justify-content:center;font-size:42px;box-shadow:5px 5px 0 var(--ink)}
-</style><div class="card"><h1>{{title}}</h1><ul>{{#each items}}<li><b>✓</b>{{this}}</li>{{/each}}</ul></div>
+h1{font-size:44px;margin-top:14px} ol{list-style:none;margin-top:18px;counter-reset:n}
+li{font-size:40px;line-height:1.2;padding:16px 0;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:22px;counter-increment:n;font-weight:400;letter-spacing:.02em}
+li:before{content:counter(n,decimal-leading-zero);font:500 18px/1 "Inter",sans-serif;letter-spacing:.15em;color:var(--accent);min-width:44px}
+</style><div class="card"><span class="label">Checklist</span><h1>{{title}}</h1><ol>{{#each items}}<li>{{this}}</li>{{/each}}</ol></div>

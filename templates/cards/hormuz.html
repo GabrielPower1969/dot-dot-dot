@@ -1,16 +1,14 @@
 <link rel="stylesheet" href="_base.css"><style>
-.card{padding:32px 40px} h1{font-size:54px;margin-top:8px} .sub{font-size:28px;margin-top:4px}
-svg{position:absolute;right:28px;top:24px;width:520px;height:540px}
-.land{fill:#EFE6C8;stroke:var(--ink);stroke-width:6;stroke-linejoin:round} .sea{fill:#8EC5E8}
-.lbl{font:700 30px "Noto Sans SC","Arimo",sans-serif;fill:var(--ink)} .sea-lbl{font:400 24px "Noto Sans SC","Arimo",sans-serif;fill:#1d3f5c}
-.arrow{fill:none;stroke:var(--red);stroke-width:12;stroke-linecap:round}
-</style><div class="card"><span class="tag">{{title}}</span><div class="sub" style="width:370px;margin-top:26px;font-size:32px;font-weight:700;line-height:1.35;word-break:break-all">{{sub}}</div>
-<svg viewBox="0 0 520 540"><rect x="0" y="0" width="520" height="540" rx="22" class="sea"/>
-<!-- Iran (north/east) -->
+.card{padding:34px 40px} h1{font-size:46px;margin-top:12px;max-width:400px} .sub{max-width:380px;font-size:24px}
+svg{position:absolute;right:34px;top:34px;width:500px;height:540px}
+.land{fill:var(--paper-2);stroke:var(--ink);stroke-width:2} .sea{fill:var(--accent-soft)}
+.lbl{font:500 15px "Inter",sans-serif;letter-spacing:.2em;text-transform:uppercase;fill:var(--ink)} .sea-lbl{font:400 16px "Inter",sans-serif;letter-spacing:.12em;fill:var(--muted)}
+.arrow{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round}
+</style><div class="card"><span class="label">Map · <b>Choke point</b></span><h1>{{title}}</h1><div class="sub">{{sub}}</div>
+<svg viewBox="0 0 520 540"><rect x="0" y="0" width="520" height="540" class="sea"/>
 <path class="land" d="M-5 -5 H525 V300 L470 330 L400 320 L330 300 L280 250 L200 220 L120 200 L60 150 L-5 120 Z"/>
-<!-- Arabian peninsula: UAE + Oman (south) -->
 <path class="land" d="M-5 300 L100 320 L200 330 L280 350 L330 370 L390 350 L440 370 L480 430 L525 470 V545 H-5 Z"/>
 <text class="lbl" x="200" y="90">{{a}}</text><text class="lbl" x="140" y="480">{{b}}</text>
 <text class="sea-lbl" x="60" y="270">{{c}}</text><text class="sea-lbl" x="380" y="450">{{d}}</text>
 <path class="arrow" d="M120 275 C 220 300, 300 330, 360 335 S 440 360, 470 395"/><path class="arrow" d="M445 395 L470 395 L466 372"/>
-</svg></div>
+<rect x="0.5" y="0.5" width="519" height="539" fill="none" stroke="var(--ink)" stroke-width="1"/></svg></div>

@@ -12,35 +12,58 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 const fill = (tpl, v) => tpl.replace(/{{{(\w+)}}}/g, (_, k) => v[k] ?? `[TODO ${k}]`).replace(/{{(\w+)}}/g, (_, k) => k in v ? esc(v[k]) : `[TODO ${k}]`);
 const out = path.join(proj, "output"); fs.mkdirSync(path.join(out, "covers"), { recursive: true });
 
-// 1. freeze frame -> data URI (cover_time_s from copy.json, default 3s into the cut)
+// 1. frames are extracted per cover (copy.<lang>.cover.frame_s or copy.cover_time_s)
 const inter = path.join(proj, "work/intermediate/cut.16x9.mov");
-const frame = path.join(proj, "work/cover-frame.jpg");
-execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", String(copy.cover_time_s ?? 3), "-i", inter, "-frames:v", "1", "-q:v", "2", frame]);
-const frameUri = "data:image/jpeg;base64," + fs.readFileSync(frame).toString("base64");
 
+import { loadTheme } from "../lib/theme.js";
+const THEME = loadTheme(profile);
 const { chromium } = await import("playwright");
 const browser = await chromium.launch(); const page = await browser.newPage();
 await page.route("**/*", r => r.request().url().startsWith("file://") || r.request().url().startsWith("data:") ? r.continue() : r.abort());
 const tpl = fs.readFileSync(path.join(ROOT, "templates/covers/cover.html"), "utf8");
-const covers = {};
+const FONTS = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/fonts/fonts.json"), "utf8"));
+const fontOf = id => FONTS.find(f => f.id === id) || FONTS.find(f => f.id === "noto-bold");
+const covers = {}, variantFiles = { zh: [], en: [] };
+// frame per language may differ (copy.<lang>.cover.frame_s); default cover_time_s
+const frameUriFor = (t) => { const f = path.join(proj, `work/cover-frame-${t}.jpg`); if (!fs.existsSync(f)) execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", String(t), "-i", inter, "-frames:v", "1", "-q:v", "2", f]); return "data:image/jpeg;base64," + fs.readFileSync(f).toString("base64"); };
 for (const [name, p] of Object.entries(platforms)) {
   if (name.startsWith("$")) continue;
   const [w, h] = p.cover; const portrait = h > w * 1.1; const square = !portrait && h > w * 0.8;
   for (const lang of p.languages) {
     const c = copy[lang]; if (!c) continue;
-    const s = Math.min(w, h) / 1080;
-    const vars = {
-      w, h, frame: frameUri, kicker: c.kicker, title: c.cover_title_html || esc(c.cover_title), handle: profile.creator.handle,
-      focus: portrait ? "30%" : "center", grad_dir: portrait ? "to bottom" : "to right",
-      pad: Math.round(70 * s), gap: Math.round(26 * s), txt_w: portrait || square ? w - Math.round(140 * s) : Math.round(w * 0.55),
-      txt_pos: portrait ? `top:${Math.round(90 * s)}px` : `top:50%;transform:translateY(-50%)`,
-      kicker_fs: Math.round((lang === "zh" ? 44 : 38) * s), title_fs: Math.round((lang === "zh" ? 128 : 104) * s * (portrait ? 0.95 : 1)), brand_fs: Math.round(34 * s),
-    };
-    const tmp = path.join(ROOT, "templates/covers", `.cover.${name}.${lang}.tmp.html`); fs.writeFileSync(tmp, fill(tpl, vars));
-    await page.setViewportSize({ width: w, height: h }); await page.goto(pathToFileURL(tmp).href); await page.waitForTimeout(120);
-    const file = path.join(out, "covers", `${name}.${lang}.${w}x${h}.png`); await page.screenshot({ path: file }); fs.unlinkSync(tmp);
-    covers[`${name}.${lang}`] = path.relative(proj, file); console.log(" cover", path.basename(file));
+    const cv = c.cover || {}; const s = Math.min(w, h) / 1080;
+    const variants = (cv.variants && cv.variants.length) ? cv.variants : [{ font: lang === "zh" ? "noto-serif" : "playfair", style: "editorial" }, { font: lang === "zh" ? "noto-bold" : "inter", style: "swiss" }, { font: lang === "zh" ? "noto-serif" : "playfair", style: "photo" }];
+    const pick = cv.pick ?? 1;
+    for (let vi = 1; vi <= variants.length; vi++) {
+      const v = variants[vi - 1]; const font = fontOf(v.font);
+      const fontFile = fs.existsSync(path.join(ROOT, "assets/fonts", font.file)) ? font.file : "NotoSansSC-Bold.otf";
+      const vars = {
+        w, h, frame: frameUriFor(cv.frame_s ?? copy.cover_time_s ?? 3), kicker: cv.kicker || c.kicker, title: cv.title_html || c.cover_title_html || esc(c.cover_title), handle: profile.creator.handle,
+        focus: portrait ? "20%" : "center", focus_x: portrait || square ? "center" : (cv.face_side === "left" ? "100%" : "0%"), zoom: portrait || square ? "cover" : "auto 150%", grad_dir: portrait ? "to bottom" : "to right", style: v.style || "editorial", orient: portrait ? "portrait" : "landscape", panel_w: Math.round(w * 0.5), panel_h: Math.round(h * 0.36),
+        font_url: pathToFileURL(path.join(ROOT, "assets/fonts", fontFile)).href, font_weight: font.weight, stroke: Math.round(4 * s),
+        pad: Math.round(56 * s), gap: Math.round(22 * s), txt_w: portrait || square ? w - Math.round(140 * s) : Math.round(w * 0.52),
+        txt_pos: portrait ? `top:${Math.round(90 * s)}px` : `top:50%;transform:translateY(-50%)`,
+        kicker_fs: Math.round(20 * s), title_fs: Math.round((v.size || (lang === "zh" ? 84 : 80)) * s * (portrait ? 1.05 : 1)), brand_fs: Math.round(24 * s),
+      };
+      const tmp = path.join(ROOT, "templates/covers", `.cover.${name}.${lang}.${vi}.tmp.html`); fs.writeFileSync(tmp, fill(tpl, vars));
+      await page.setViewportSize({ width: w, height: h }); await page.goto(pathToFileURL(tmp).href); await page.waitForTimeout(150);
+      const base = `${name}.${lang}.${w}x${h}`; const file = path.join(out, "covers", `${base}.v${vi}.png`);
+      await page.screenshot({ path: file }); fs.unlinkSync(tmp);
+      if (vi === pick) { fs.copyFileSync(file, path.join(out, "covers", `${base}.png`)); covers[`${name}.${lang}`] = path.relative(proj, path.join(out, "covers", `${base}.png`)); }
+      if (name === (portrait ? "douyin" : "youtube")) variantFiles[lang].push({ file, label: `v${vi} ${font.id}/${v.style || "outline"}` });
+      console.log(" cover", path.basename(file), vi === pick ? "(pick)" : "");
+    }
   }
+}
+// legibility strip: every variant at 120 px wide, side by side, per language
+for (const lang of Object.keys(variantFiles)) {
+  const vs = variantFiles[lang]; if (!vs.length) continue;
+  const html = `<style>body{margin:0;background:#888;display:flex;gap:14px;padding:14px;font:11px Arimo,sans-serif;color:#fff}div{text-align:center}img{width:120px;display:block;border:1px solid #000}</style>` +
+    vs.map(v => `<div><img src="${pathToFileURL(v.file).href}"><span>${esc(v.label)}</span></div>`).join("");
+  const tmp = path.join(ROOT, "templates/covers", `.legib.${lang}.tmp.html`); fs.writeFileSync(tmp, html);
+  await page.setViewportSize({ width: 40 + vs.length * 134, height: 260 }); await page.goto(pathToFileURL(tmp).href); await page.waitForTimeout(150);
+  await page.screenshot({ path: path.join(out, "covers", `legibility-${lang}.png`), fullPage: true }); fs.unlinkSync(tmp);
+  console.log(" legibility strip", `legibility-${lang}.png`);
 }
 await browser.close();
 

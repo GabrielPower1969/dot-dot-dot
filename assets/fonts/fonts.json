@@ -1,0 +1,170 @@
+[
+ {
+  "id": "playfair",
+  "family": "Playfair Display",
+  "file": "PlayfairDisplay-Variable.ttf",
+  "weight": 500,
+  "lang": "en",
+  "feel": "杂志衬线 · 编辑感（归藏 Editorial 同款）",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "inter",
+  "family": "Inter",
+  "file": "Inter-Variable.ttf",
+  "weight": 300,
+  "lang": "en",
+  "feel": "瑞士国际主义无衬线（归藏 Swiss 同款）",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "noto-light",
+  "family": "Noto Sans SC Light",
+  "file": "NotoSansSC-Variable.ttf",
+  "weight": 300,
+  "lang": "zh+en",
+  "feel": "细黑 · 瑞士风大标题（the larger, the lighter）",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "noto-black",
+  "family": "Noto Sans SC Black",
+  "file": "NotoSansSC-Variable.ttf",
+  "weight": 900,
+  "lang": "zh+en",
+  "feel": "粗黑 · 权威 · 通用",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "noto-bold",
+  "family": "Noto Sans SC",
+  "file": "NotoSansSC-Bold.otf",
+  "weight": 700,
+  "lang": "zh+en",
+  "feel": "标准粗体（视频字幕同款）",
+  "licence": "OFL-1.1"
+ },
+ {
+  "id": "noto-serif",
+  "family": "Noto Serif SC",
+  "file": "NotoSerifSC-Variable.ttf",
+  "weight": 500,
+  "lang": "zh+en",
+  "feel": "宋体 · 杂志 · 深度",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "smiley",
+  "family": "Smiley Sans",
+  "file": "SmileySans-Oblique.ttf",
+  "weight": 400,
+  "lang": "zh+en",
+  "feel": "得意黑 · 斜体 · 年轻有劲",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "kuaile",
+  "family": "ZCOOL KuaiLe",
+  "file": "ZCOOLKuaiLe-Regular.ttf",
+  "weight": 400,
+  "lang": "zh",
+  "feel": "站酷快乐体 · 搞笑 · 综艺",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "huangyou",
+  "family": "ZCOOL QingKe HuangYou",
+  "file": "ZCOOLQingKeHuangYou-Regular.ttf",
+  "weight": 400,
+  "lang": "zh",
+  "feel": "庆科黄油体 · 圆润 · 亲切",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "mashanzheng",
+  "family": "Ma Shan Zheng",
+  "file": "MaShanZheng-Regular.ttf",
+  "weight": 400,
+  "lang": "zh",
+  "feel": "楷书 · 手写 · 走心",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "zhimangxing",
+  "family": "Zhi Mang Xing",
+  "file": "ZhiMangXing-Regular.ttf",
+  "weight": 400,
+  "lang": "zh",
+  "feel": "行书 · 潇洒 · 情绪",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "longcang",
+  "family": "Long Cang",
+  "file": "LongCang-Regular.ttf",
+  "weight": 400,
+  "lang": "zh",
+  "feel": "毛笔 · 狂 · 冲击",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "anton",
+  "family": "Anton",
+  "file": "Anton-Regular.ttf",
+  "weight": 400,
+  "lang": "en",
+  "feel": "YouTube 缩略图经典压缩黑体",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "bebas",
+  "family": "Bebas Neue",
+  "file": "BebasNeue-Regular.ttf",
+  "weight": 400,
+  "lang": "en",
+  "feel": "全大写 · 海报 · 干净",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "archivo",
+  "family": "Archivo Black",
+  "file": "ArchivoBlack-Regular.ttf",
+  "weight": 400,
+  "lang": "en",
+  "feel": "超粗 · 稳",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "oswald",
+  "family": "Oswald",
+  "file": "Oswald-Variable.ttf",
+  "weight": 700,
+  "lang": "en",
+  "feel": "窄黑体 · 新闻",
+  "licence": "OFL-1.1",
+  "fetch": true
+ },
+ {
+  "id": "arimo",
+  "family": "Arimo",
+  "file": "Arimo-Bold.ttf",
+  "weight": 700,
+  "lang": "en",
+  "feel": "中性 · 品牌小字",
+  "licence": "OFL-1.1"
+ }
+]

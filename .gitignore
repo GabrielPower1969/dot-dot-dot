@@ -21,3 +21,11 @@ projects/*/work/cover-frame.jpg
 projects/*/work/*.log
 ui/inbox.jsonl
 metrics/
+assets/fonts/*
+!assets/fonts/fonts.json
+!assets/fonts/Arimo-*.ttf
+!assets/fonts/NotoSansSC-Bold.otf
+!assets/fonts/NotoSansSC-Regular.otf
+projects/*/work/cover-frame-*.jpg
+projects/*/work/frames/
+templates/cards/_theme.css

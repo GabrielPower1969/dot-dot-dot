@@ -3,7 +3,7 @@
 ## Name
 **dot-dot-dot** — from Jobs' Stanford 2005 line: *"You can't connect the dots looking forward; you can only connect
 them looking backwards."* Each video is a dot; the pipeline connects them. Chinese: **连点成线**（品牌名保留英文 dot-dot-dot）。
-Logo v0.1: three growing dots joined by a dotted arc, brand yellow `#F5C518` on ink `#111`. Files: `assets/brand/logo.svg`
+Logo v0.2: three growing dots joined by a dotted arc; ink dots, the last dot in the theme accent, on theme paper (currently Indigo Porcelain `#315d93` on `#f2f4f5`). The yellow/black v0.1 is retired — Gabriel: never yellow/black. Files: `assets/brand/logo.svg`
 (square mark), `assets/brand/wordmark.svg`. Both are drafts to iterate; the outro already uses the square mark.
 
 ## Domains — availability check 2026-09-16 `[B · RDAP via rdap.org + whois.irs.net.nz, not a registrar quote]`
