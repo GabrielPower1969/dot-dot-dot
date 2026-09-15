@@ -21,6 +21,7 @@ projects/<slug>/       INPUT+OUTPUT per video. slug = <yyyy-mm-dd>-<topic>.
   copy.json            per-platform titles/hook/body/hashtags, cover_time_s, publish_order
   cues.en.json         zh subtitle line → en line (LLM 'translate' route or by hand)
   source/*.mp4         raw recording (git-ignored)
+  materials/           assets the creator drops in (clips, images, music, sfx) + optional materials.json placements. The agent PLACES, never searches/downloads.
   work/                transcript.json (words) · plan.json (resolved times) · cards/*.png · subs.*.ass · intermediate/cut.*.mov
   output/              <slug>.<16x9|9x16>.<zh|en>.mp4 · covers/<platform>.<lang>.<WxH>.png · <platform>/<platform>-post-<topic>-<date>.<lang>.md · README.md
 config/profile.json    personal style (locked): brand.theme (→ themes.json), display fonts, cut rules, subtitle sizes, pop style, PiP, audio levels, outro, rules[]
@@ -48,6 +49,7 @@ ui/inbox.jsonl         requests typed in the UI for the agent (status open → d
 - **Style is config, judgement is edit.json.** Never change `config/profile.json` or a template for one video.
 - **Anchors are quotes.** `edit.json` says *where* with text from the script, never with seconds (except `manual_cuts`, `speed`, `at_s` fallbacks).
 - **Slug format enforced; one source file per project.**
+- **The creator supplies assets.** Agents don't hunt for stock/music; they place what is in `materials/` and say what is missing.
 - **Assets need a licence line in `assets/manifest.json`** before they are used in a render.
 - Fixed process = code, judgement = skill. Don't re-derive ffmpeg graphs in prompts.
 - **Design system:** one theme per video from `config/themes.json`; accent used once per frame; editorial type is regular weight + wide tracking; never the yellow/black sticker look. Fonts only from `fonts.json`.

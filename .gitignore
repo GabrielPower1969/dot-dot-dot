@@ -29,3 +29,6 @@ assets/fonts/*
 projects/*/work/cover-frame-*.jpg
 projects/*/work/frames/
 templates/cards/_theme.css
+projects/*/materials/*
+!projects/*/materials/README.md
+!projects/*/materials/materials.json
