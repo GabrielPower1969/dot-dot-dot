@@ -1,0 +1,8 @@
+[
+  { "file": "sfx/pop.wav",    "source_url": "synthesised in-repo (ffmpeg sine)", "licence": "CC0", "attribution": "", "use": "keyword pop", "added": "2026-09-16" },
+  { "file": "sfx/ding.wav",   "source_url": "synthesised in-repo", "licence": "CC0", "attribution": "", "use": "outro / reveal", "added": "2026-09-16" },
+  { "file": "sfx/whoosh.wav", "source_url": "synthesised in-repo (pink noise)", "licence": "CC0", "attribution": "", "use": "card in", "added": "2026-09-16" },
+  { "file": "sfx/bleep.wav",  "source_url": "synthesised in-repo", "licence": "CC0", "attribution": "", "use": "censor", "added": "2026-09-16" },
+  { "file": "sfx/thud.wav",   "source_url": "synthesised in-repo", "licence": "CC0", "attribution": "", "use": "bad-news beat", "added": "2026-09-16" },
+  { "file": "music/placeholder-lofi-pad.wav", "source_url": "synthesised in-repo (aevalsrc chords)", "licence": "CC0", "attribution": "", "mood": "calm", "added": "2026-09-16", "todo": "replace with a licensed bed" }
+]

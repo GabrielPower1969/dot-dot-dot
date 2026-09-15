@@ -1,0 +1,85 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Arimo,57,&H00FFFFFF,&H00FFFFFF,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,4,0,2,60,60,70,1
+Style: Pop,Arimo,108,&H0018C5F5,&H0018C5F5,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,8,0,5,0,0,0,1
+Style: Corner,Arimo,97,&H0018C5F5,&H0018C5F5,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,8,0,7,0,0,0,1
+Style: LT1,Arimo,78,&H00111111,&H00111111,&H0018C5F5,&H00000000,1,0,0,0,100,100,0,0,3,14,0,7,0,0,0,1
+Style: LT2,Arimo,40,&H00FFFFFF,&H00FFFFFF,&H00111111,&H80000000,1,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.12,0:00:02.22,Sub,,0,0,0,,I've been talking to a lot of young people lately,
+Dialogue: 0,0:00:02.26,0:00:04.38,Sub,,0,0,0,,and when they have little work experience,
+Dialogue: 0,0:00:04.42,0:00:06.90,Sub,,0,0,0,,they all share one wish: to "lie flat".
+Dialogue: 0,0:00:07.52,0:00:09.23,Sub,,0,0,0,,So today, let's talk about lying flat.
+Dialogue: 0,0:00:09.92,0:00:12.62,Sub,,0,0,0,,First of all, I think it's a brilliant idea.
+Dialogue: 0,0:00:12.66,0:00:13.34,Sub,,0,0,0,,The problem is,
+Dialogue: 0,0:00:13.38,0:00:17.35,Sub,,0,0,0,,lying flat has a bar, and you need to study it.
+Dialogue: 0,0:00:17.39,0:00:18.99,Sub,,0,0,0,,"I'll just find a so-so salary,
+Dialogue: 0,0:00:19.03,0:00:22.05,Sub,,0,0,0,,a so-so job, nothing fancy, and I can rest."
+Dialogue: 0,0:00:22.09,0:00:24.53,Sub,,0,0,0,,Good intention. But in my experience,
+Dialogue: 0,0:00:24.57,0:00:25.85,Sub,,0,0,0,,this "good enough" mindset
+Dialogue: 0,0:00:25.89,0:00:27.37,Sub,,0,0,0,,usually comes with risks
+Dialogue: 0,0:00:27.41,0:00:28.71,Sub,,0,0,0,,that people don't see.
+Dialogue: 0,0:00:28.75,0:00:30.59,Sub,,0,0,0,,One: a so-so salary
+Dialogue: 0,0:00:30.63,0:00:31.91,Sub,,0,0,0,,doesn't mean decent freedom.
+Dialogue: 0,0:00:31.95,0:00:33.83,Sub,,0,0,0,,These jobs usually chain you to a desk,
+Dialogue: 0,0:00:33.87,0:00:35.25,Sub,,0,0,0,,eating up your personal time.
+Dialogue: 0,0:00:35.29,0:00:36.39,Sub,,0,0,0,,That's not lying flat at all.
+Dialogue: 0,0:00:36.43,0:00:40.03,Sub,,0,0,0,,Two: it looks easy, but you can't slack off.
+Dialogue: 0,0:00:40.07,0:00:41.31,Sub,,0,0,0,,You have no energy left for
+Dialogue: 0,0:00:41.35,0:00:42.47,Sub,,0,0,0,,the things you actually care about,
+Dialogue: 0,0:00:43.51,0:00:45.57,Sub,,0,0,0,,or grow a real edge of your own.
+Dialogue: 0,0:00:45.61,0:00:47.49,Sub,,0,0,0,,Three, and the biggest risk:
+Dialogue: 0,0:00:47.53,0:00:49.65,Sub,,0,0,0,,low pay means very low security.
+Dialogue: 0,0:00:49.69,0:00:51.59,Sub,,0,0,0,,When the economy turns down,
+Dialogue: 0,0:00:51.63,0:00:53.49,Sub,,0,0,0,,these roles get cut first.
+Dialogue: 0,0:00:53.53,0:00:57.30,Sub,,0,0,0,,So that's not lying flat. That's boiling the frog.
+Dialogue: 0,0:00:57.34,0:00:58.50,Sub,,0,0,0,,Jobs that truly let you lie flat,
+Dialogue: 0,0:00:58.54,0:00:59.96,Sub,,0,0,0,,the ones that "nourish" you,
+Dialogue: 0,0:01:00.00,0:01:01.72,Sub,,0,0,0,,actually have a high bar.
+Dialogue: 0,0:01:01.76,0:01:04.18,Sub,,0,0,0,,Because they give you real freedom
+Dialogue: 0,0:01:04.22,0:01:06.72,Sub,,0,0,0,,to do what you want in your spare time.
+Dialogue: 0,0:01:07.62,0:01:09.58,Sub,,0,0,0,,How do you spot such a dream company?
+Dialogue: 0,0:01:09.62,0:01:14.20,Sub,,0,0,0,,One thing: structural competitiveness that leads to monopoly.
+Dialogue: 0,0:01:14.24,0:01:15.49,Sub,,0,0,0,,Here's what I've noticed:
+Dialogue: 0,0:01:15.53,0:01:18.25,Sub,,0,0,0,,don't look at how big the company is,
+Dialogue: 0,0:01:18.29,0:01:20.79,Sub,,0,0,0,,look at how high its compliance cost is.
+Dialogue: 0,0:01:20.83,0:01:23.63,Sub,,0,0,0,,Some businesses, nobody else can get into,
+Dialogue: 0,0:01:23.67,0:01:25.61,Sub,,0,0,0,,because they need complex legal paperwork,
+Dialogue: 0,0:01:25.65,0:01:28.50,Sub,,0,0,0,,deep government ties, strict industry certifications.
+Dialogue: 0,0:01:28.55,0:01:29.79,Sub,,0,0,0,,All of that takes a lot of time
+Dialogue: 0,0:01:29.83,0:01:31.23,Sub,,0,0,0,,and a lot of experienced people to build.
+Dialogue: 0,0:01:31.27,0:01:34.45,Sub,,0,0,0,,They sit at a special choke point in the industry.
+Dialogue: 0,0:01:34.49,0:01:37.47,Sub,,0,0,0,,Just like Iran guarding the Strait of Hormuz,
+Dialogue: 0,0:01:37.51,0:01:40.01,Sub,,0,0,0,,they hold a structurally scarce position,
+Dialogue: 0,0:01:40.05,0:01:41.77,Sub,,0,0,0,,which fundamentally blocks the rat race.
+Dialogue: 0,0:01:41.81,0:01:45.67,Sub,,0,0,0,,No need to grind to death; the moat pays the dividend.
+Dialogue: 0,0:01:45.71,0:01:46.39,Sub,,0,0,0,,So here's my advice:
+Dialogue: 0,0:01:46.43,0:01:48.53,Sub,,0,0,0,,when job hunting, look for companies that are
+Dialogue: 0,0:01:48.57,0:01:51.67,Sub,,0,0,0,,expensive to comply, strategically valuable, conservative in hiring,
+Dialogue: 0,0:01:51.72,0:01:54.62,Sub,,0,0,0,,but relatively decent to their staff.
+Dialogue: 0,0:01:54.66,0:01:56.42,Sub,,0,0,0,,Whether the economy goes up or down,
+Dialogue: 0,0:01:56.46,0:01:57.96,Sub,,0,0,0,,these companies are rock solid.
+Dialogue: 0,0:01:58.00,0:02:01.34,Sub,,0,0,0,,At the end of the day, real high-level lying flat
+Dialogue: 0,0:02:01.38,0:02:04.61,Sub,,0,0,0,,comes down to one word: monopoly.
+Dialogue: 0,0:02:04.65,0:02:06.22,Sub,,0,0,0,,{\c&H0018C5F5}Got it?{\c&H00FFFFFF}
+Dialogue: 0,0:02:06.26,0:02:07.24,Sub,,0,0,0,,If you enjoyed this video,
+Dialogue: 0,0:02:07.28,0:02:11.30,Sub,,0,0,0,,please like and save it. See you next time, bye!
+Dialogue: 2,0:00:05.76,0:00:07.37,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Lying flat
+Dialogue: 2,0:00:28.75,0:00:35.75,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}①
+Dialogue: 2,0:00:36.43,0:00:44.43,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}②
+Dialogue: 2,0:00:45.61,0:00:53.61,Corner,,0,0,0,,{\pos(70,60)\fscx60\fscy60\t(0,140,\fscx108\fscy108)\t(140,260,\fscx100\fscy100)\fad(0,200)}③
+Dialogue: 2,0:00:55.49,0:00:57.22,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Boiling the frog
+Dialogue: 2,0:01:08.40,0:01:10.20,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Dream company
+Dialogue: 2,0:02:03.41,0:02:05.90,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}MONOPOLY
+Dialogue: 2,0:02:04.65,0:02:05.98,Pop,,0,0,0,,{\pos(1440,400)\frz-4\fscx50\fscy50\t(0,140,\fscx112\fscy112)\t(140,260,\fscx100\fscy100)\fad(0,220)}Got it?
+Dialogue: 3,0:00:00.30,0:00:03.50,LT1,,0,0,0,,{\move(-420,90,80,90,0,320)\fad(0,250)}  The Bar for Lying Flat  
+Dialogue: 3,0:00:00.50,0:00:03.50,LT2,,0,0,0,,{\move(-420,210,80,210,0,320)\fad(0,250)}Why a 'good-enough' job won't let you rest

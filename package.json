@@ -1,0 +1,16 @@
+{
+  "name": "dot-dot-dot",
+  "version": "0.1.0",
+  "description": "Connect the dots: one recording -> cut, subtitled, branded videos + covers + copy for every platform, in two languages.",
+  "type": "module",
+  "scripts": {
+    "transcribe": "python3 src/steps/1-transcribe.py",
+    "plan": "python3 src/steps/2-plan-edit.py",
+    "cards": "node src/steps/3-render-cards.js",
+    "assemble": "python3 src/steps/4-assemble.py",
+    "package": "node src/steps/5-package.js",
+    "build": "python3 src/build.py"
+  },
+  "license": "MIT",
+  "dependencies": { "playwright": "^1.55.0" }
+}

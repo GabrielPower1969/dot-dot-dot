@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="../cards/_base.css"><style>
+html,body{width:{{w}}px;height:{{h}}px;background:var(--ink)}
+.frame{position:absolute;inset:0;background:url("{{frame}}") center {{focus}}/cover no-repeat}
+.shade{position:absolute;inset:0;background:linear-gradient({{grad_dir}},rgba(17,17,17,.92) 0%,rgba(17,17,17,.55) 45%,rgba(17,17,17,0) 75%)}
+.txt{position:absolute;left:{{pad}}px;{{txt_pos}};width:{{txt_w}}px;display:flex;flex-direction:column;gap:{{gap}}px}
+.kicker{background:var(--y);color:var(--ink);font-weight:700;font-size:{{kicker_fs}}px;padding:6px 22px;border:6px solid var(--ink);box-shadow:8px 8px 0 var(--red);width:max-content;max-width:100%;transform:rotate(-2deg)}
+.title{color:#fff;font-weight:700;font-size:{{title_fs}}px;line-height:1.08;letter-spacing:-1px;text-shadow:0 6px 0 var(--ink),0 0 30px rgba(0,0,0,.6)}
+.title em{font-style:normal;color:var(--y)}
+.brand{position:absolute;right:{{pad}}px;bottom:{{pad}}px;color:#fff;font:700 {{brand_fs}}px "Arimo",sans-serif;opacity:.85;background:rgba(17,17,17,.6);padding:6px 16px;border-radius:12px}
+</style><div class="frame"></div><div class="shade"></div>
+<div class="txt"><span class="kicker">{{kicker}}</span><div class="title">{{{title}}}</div></div><div class="brand">{{handle}}</div>

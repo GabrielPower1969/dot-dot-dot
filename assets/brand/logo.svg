@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- square mark for outro circle / avatar / favicon -->
+  <rect width="512" height="512" rx="110" fill="#F5C518"/>
+  <path d="M96 330 Q 190 190 256 300 T 416 200" fill="none" stroke="#111" stroke-width="16" stroke-linecap="round" stroke-dasharray="1 30"/>
+  <circle cx="96" cy="330" r="34" fill="#111"/>
+  <circle cx="256" cy="300" r="48" fill="#111"/>
+  <circle cx="416" cy="200" r="64" fill="#111"/>
+  <circle cx="436" cy="180" r="12" fill="#F5C518"/>
+</svg>

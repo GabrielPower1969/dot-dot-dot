@@ -1,0 +1,35 @@
+{
+  "$comment": "Per-video judgement (written by the meetup… no: by the video-edit skill, reviewed by Gabriel). WHERE = a quote from voiceover.md; WHAT = pop / insert / sfx / cut.",
+  "title":    { "zh": "躺平的门槛", "en": "The Bar for Lying Flat" },
+  "subtitle": { "zh": "为什么「差不多」的工作躺不了", "en": "Why a 'good-enough' job won't let you rest" },
+  "manual_cuts": [
+    { "from_s": 124.5, "to_s": 126.0, "why": "stumble: '所以说不管' restarted as '到时候不管…'" }
+  ],
+  "pops": [
+    { "anchor": "想躺平",     "text": { "zh": "躺平",       "en": "Lying flat" },      "hold_s": 1.6 },
+    { "anchor": "第一，",     "text": { "zh": "①",          "en": "①" }, "style": "corner", "hold_s": 7.0 },
+    { "anchor": "第二，",     "text": { "zh": "②",          "en": "②" }, "style": "corner", "hold_s": 8.0 },
+    { "anchor": "第三，",     "text": { "zh": "③",          "en": "③" }, "style": "corner", "hold_s": 8.0 },
+    { "anchor": "温水煮青蛙", "text": { "zh": "温水煮青蛙", "en": "Boiling the frog" }, "hold_s": 2.2 },
+    { "anchor": "神仙公司",   "text": { "zh": "神仙公司",   "en": "Dream company" },   "hold_s": 1.8 },
+    { "anchor": "垄断", "occurrence": 2, "text": { "zh": "垄断", "en": "MONOPOLY" }, "hold_s": 2.6, "sfx": "ding" },
+    { "anchor": "你学会了吗", "text": { "zh": "学会了吗？", "en": "Got it?" },        "hold_s": 1.5 }
+  ],
+  "inserts": [
+    { "anchor": "差不多的工资", "card": "quote", "hold_s": 3.8,
+      "vars": { "zh": { "title": "《差不多先生》", "line": "凡事只要差不多，就好了。", "by": "胡适 · 1924" },
+                "en": { "title": "Mr. Close Enough", "line": "Close enough is good enough.", "by": "Hu Shih · 1924" } },
+      "todo": "script asked for the《差不多先生》BGM — copyrighted, not bundled; drop a licensed track in assets/music/ and reference it here as \"bgm\"" },
+    { "anchor": "伊朗扼守霍尔木兹海峡", "card": "hormuz", "hold_s": 5.5,
+      "vars": { "zh": { "title": "霍尔木兹海峡", "sub": "全球 ~20% 石油从这里过", "a": "伊朗", "b": "阿曼", "c": "波斯湾", "d": "阿曼湾" },
+                "en": { "title": "Strait of Hormuz", "sub": "~20% of the world's oil passes here", "a": "Iran", "b": "Oman", "c": "Persian Gulf", "d": "Gulf of Oman" } } },
+    { "anchor": "合规成本高", "occurrence": 2, "card": "checklist", "hold_s": 6.0,
+      "vars": { "zh": { "title": "认准这种公司", "items": ["合规成本高", "有战略价值", "招人保守", "对员工不错"] },
+                "en": { "title": "Look for companies that are", "items": ["Expensive to comply", "Strategically valuable", "Conservative hiring", "Decent to staff"] } } }
+  ],
+  "sfx": [
+    { "anchor": "最容易被裁", "name": "thud" }
+  ],
+  "intro": { "lower_third": true },
+  "outro": { "headline": { "zh": "真正高级的躺平 = 垄断", "en": "Real lying flat = monopoly" } }
+}

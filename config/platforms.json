@@ -1,0 +1,202 @@
+{
+ "$comment": "Per-platform delivery spec. verified = last date the numbers were checked against the platform's own help pages (D-level until then).",
+ "youtube": {
+  "aspect": "16:9",
+  "video": [
+   1920,
+   1080
+  ],
+  "cover": [
+   1280,
+   720
+  ],
+  "max_s": 43200,
+  "title_max": 100,
+  "desc_max": 5000,
+  "tags_max": 15,
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "owner": "self",
+  "publish": "web:studio.youtube.com",
+  "schedule": true,
+  "verified": null
+ },
+ "bilibili": {
+  "aspect": "16:9",
+  "video": [
+   1920,
+   1080
+  ],
+  "cover": [
+   1146,
+   717
+  ],
+  "max_s": 3600,
+  "title_max": 80,
+  "desc_max": 2000,
+  "tags_max": 10,
+  "languages": [
+   "zh"
+  ],
+  "owner": "self",
+  "publish": "web:member.bilibili.com",
+  "schedule": true,
+  "verified": null
+ },
+ "xiaohongshu": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1242,
+   1660
+  ],
+  "max_s": 900,
+  "title_max": 20,
+  "desc_max": 1000,
+  "tags_max": 10,
+  "languages": [
+   "zh"
+  ],
+  "owner": "self",
+  "publish": "web:creator.xiaohongshu.com",
+  "schedule": true,
+  "verified": null
+ },
+ "douyin": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1080,
+   1920
+  ],
+  "max_s": 900,
+  "title_max": 55,
+  "desc_max": 1000,
+  "tags_max": 5,
+  "languages": [
+   "zh"
+  ],
+  "owner": "self",
+  "publish": "web:creator.douyin.com",
+  "schedule": true,
+  "verified": null
+ },
+ "kuaishou": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1080,
+   1920
+  ],
+  "max_s": 900,
+  "title_max": 50,
+  "desc_max": 500,
+  "tags_max": 5,
+  "languages": [
+   "zh"
+  ],
+  "owner": "self",
+  "publish": "web:cp.kuaishou.com",
+  "schedule": true,
+  "verified": null
+ },
+ "instagram": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1080,
+   1350
+  ],
+  "max_s": 90,
+  "title_max": 0,
+  "desc_max": 2200,
+  "tags_max": 30,
+  "languages": [
+   "en"
+  ],
+  "owner": "self",
+  "publish": "web:instagram.com (Reels)",
+  "schedule": "via Meta Business Suite",
+  "verified": null
+ },
+ "facebook": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1200,
+   630
+  ],
+  "max_s": 90,
+  "title_max": 0,
+  "desc_max": 63206,
+  "tags_max": 30,
+  "languages": [
+   "en"
+  ],
+  "owner": "self",
+  "publish": "web:business.facebook.com",
+  "schedule": true,
+  "verified": null
+ },
+ "linkedin": {
+  "aspect": "16:9",
+  "video": [
+   1920,
+   1080
+  ],
+  "cover": [
+   1200,
+   627
+  ],
+  "max_s": 600,
+  "title_max": 0,
+  "desc_max": 3000,
+  "tags_max": 5,
+  "languages": [
+   "en"
+  ],
+  "owner": "self",
+  "publish": "web:linkedin.com",
+  "schedule": true,
+  "verified": null
+ },
+ "tiktok": {
+  "aspect": "9:16",
+  "video": [
+   1080,
+   1920
+  ],
+  "cover": [
+   1080,
+   1920
+  ],
+  "max_s": 600,
+  "title_max": 0,
+  "desc_max": 4000,
+  "tags_max": 30,
+  "languages": [
+   "en"
+  ],
+  "owner": "self",
+  "publish": "web:tiktok.com/tiktokstudio",
+  "schedule": true,
+  "verified": null
+ }
+}

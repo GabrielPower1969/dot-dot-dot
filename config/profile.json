@@ -1,0 +1,86 @@
+{
+  "$comment": "Personal style. Everything here is LOCKED across videos; per-video judgement goes in projects/<slug>/edit.json.",
+  "creator": {
+    "name": "Gabriel Chen",
+    "handle": "@gabriel",
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "default_language": "zh"
+  },
+  "brand": {
+    "logo": "assets/brand/logo.png",
+    "primary": "#F5C518",
+    "ink": "#111111",
+    "paper": "#FFFFFF",
+    "accent": "#E63946",
+    "font_zh": "Noto Sans SC",
+    "font_en": "Arimo",
+    "fonts_dir": "assets/fonts"
+  },
+  "cut": {
+    "retake_similarity": 0.6,
+    "retake_window_s": 15,
+    "silence_gap_s": 0.7,
+    "silence_keep_s": 0.32,
+    "pad_before_s": 0.12,
+    "pad_after_s": 0.15
+  },
+  "subtitles": {
+    "max_chars_zh": 16,
+    "max_chars_en": 42,
+    "font_size_16x9": 64,
+    "font_size_9x16": 68,
+    "margin_v_16x9": 70,
+    "margin_v_9x16": 420,
+    "outline": 4,
+    "shadow": 0,
+    "highlight_color": "#F5C518"
+  },
+  "keyword_pop": {
+    "$comment": "Big words that pop when the speaker says them. size in px on a 1080p-high canvas; sfx from assets/sfx.",
+    "font_size": 150,
+    "color": "#F5C518",
+    "outline_color": "#111111",
+    "outline": 8,
+    "bounce_ms": 140,
+    "sfx": "pop",
+    "default_hold_s": 1.6
+  },
+  "inserts": {
+    "$comment": "Picture-in-picture cards (maps, screenshots, meme stickers). Rendered from templates/cards/*.html to PNG.",
+    "pip_width_ratio": 0.46,
+    "pip_margin": 48,
+    "fade_s": 0.25,
+    "sfx_in": "whoosh",
+    "pip_width_ratio_9x16": 0.62
+  },
+  "audio": {
+    "voice_loudnorm": "I=-16:TP=-1.5:LRA=11",
+    "bgm": "assets/music/placeholder-lofi-pad.wav",
+    "bgm_db": -30,
+    "bgm_fade_s": 2.0,
+    "sfx_db": -14,
+    "bleep_marker": "[bleep]"
+  },
+  "intro": {
+    "lower_third_s": 3.2,
+    "sfx": "whoosh"
+  },
+  "outro": {
+    "template": "templates/cards/outro.html",
+    "duration_s": 4.0,
+    "cta_zh": "点赞 · 收藏 · 关注",
+    "cta_en": "Like · Save · Follow",
+    "sfx": "ding"
+  },
+  "rules": [
+    "Jump cuts only. No dissolves between talking-head shots.",
+    "One keyword pop per idea, never two on screen at once.",
+    "Subtitles use the SCRIPT text, not the ASR text (ASR fixes homophones wrongly).",
+    "Retakes: keep the LAST take, cut everything from the first false start to the restart.",
+    "Bleep is for genuinely awkward moments only; never on the punchline.",
+    "Chinese and English versions share the same cut; only subtitles, pops, cards and cover text change."
+  ]
+}

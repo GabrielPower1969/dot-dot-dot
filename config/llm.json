@@ -1,0 +1,126 @@
+{
+  "$comment": "Three tiers. DESKTOP = the interactive agent (Claude Code / Cursor etc., paid by subscription): does judgement work — edit plan, copy, review. API_EXPENSIVE = frontier models via key, only for tasks that need them and are unattended. API_CHEAP = small/zh models via key or local Ollama: bulk mechanical work (translation, summaries, tagging, monitoring digests). Every non-Anthropic provider speaks the OpenAI chat-completions dialect, so one adapter covers OpenAI / DeepSeek / Zhipu / Doubao(Ark) / Moonshot / Ollama. Keys come from env only.",
+  "providers": {
+    "anthropic": {
+      "kind": "anthropic",
+      "model": "claude-sonnet-5",
+      "env_key": "ANTHROPIC_API_KEY"
+    },
+    "openai": {
+      "kind": "openai",
+      "model": "gpt-4.1-mini",
+      "env_key": "OPENAI_API_KEY",
+      "base_url": "https://api.openai.com/v1"
+    },
+    "deepseek": {
+      "kind": "openai",
+      "model": "deepseek-chat",
+      "env_key": "DEEPSEEK_API_KEY",
+      "base_url": "https://api.deepseek.com/v1"
+    },
+    "zhipu": {
+      "kind": "openai",
+      "model": "glm-4-plus",
+      "env_key": "ZHIPU_API_KEY",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4"
+    },
+    "doubao": {
+      "kind": "openai",
+      "model": "doubao-1-5-pro-32k-250115",
+      "env_key": "ARK_API_KEY",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3"
+    },
+    "ollama": {
+      "kind": "openai",
+      "model": "qwen2.5:14b",
+      "env_key": null,
+      "base_url": "http://localhost:11434/v1"
+    }
+  },
+  "routes": {
+    "$comment": "task -> [primary, fallback...]. Cheap local/zh models for zh copy; strongest model only for the edit plan.",
+    "edit_plan": [
+      "anthropic",
+      "deepseek"
+    ],
+    "translate": [
+      "deepseek",
+      "anthropic"
+    ],
+    "copy_zh": [
+      "deepseek",
+      "zhipu",
+      "doubao"
+    ],
+    "copy_en": [
+      "anthropic",
+      "openai"
+    ],
+    "title_ideas": [
+      "deepseek",
+      "anthropic"
+    ],
+    "summarise": [
+      "ollama",
+      "deepseek"
+    ],
+    "tagging": [
+      "ollama",
+      "deepseek"
+    ],
+    "monitor_digest": [
+      "ollama",
+      "deepseek"
+    ],
+    "sponsor_reply_draft": [
+      "anthropic",
+      "deepseek"
+    ],
+    "copy_review": [
+      "anthropic"
+    ]
+  },
+  "budget": {
+    "max_input_tokens_per_call": 12000,
+    "send_transcript_as": "script+cue_index (never the raw word JSON)",
+    "cache_dir": ".cache/llm",
+    "log_usage_to": ".cache/llm/usage.jsonl"
+  },
+  "tiers": {
+    "desktop": {
+      "how": "the agent you are typing to; no API key; uses skills in .claude/skills/",
+      "use_for": [
+        "edit_plan",
+        "copy_review",
+        "architecture"
+      ]
+    },
+    "api_expensive": {
+      "providers": [
+        "anthropic",
+        "openai"
+      ],
+      "use_for": [
+        "edit_plan (unattended batch)",
+        "copy_en",
+        "sponsor_reply_draft"
+      ]
+    },
+    "api_cheap": {
+      "providers": [
+        "deepseek",
+        "zhipu",
+        "doubao",
+        "ollama"
+      ],
+      "use_for": [
+        "translate",
+        "summarise",
+        "tagging",
+        "copy_zh",
+        "monitor_digest",
+        "title_ideas"
+      ]
+    }
+  }
+}

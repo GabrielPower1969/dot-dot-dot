@@ -1,0 +1,4 @@
+[
+  { "$comment": "Reusable shots. tags drive search from edit.json inserts {card:\"clip\", tags:[\"shock\"]}. Clips live next to this file (git-ignored except this catalog)." },
+  { "file": "reaction-shock-01.mp4", "tags": ["shock", "wait-what", "face"], "dur_s": 1.6, "licence": "own", "poster": "reaction-shock-01.jpg", "todo": "record a 10-clip reaction pack in one session: shock, facepalm, nod, eye-roll, laugh, sigh, point-at-camera, thumbs-up, thinking, wave" }
+]
