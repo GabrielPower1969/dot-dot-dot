@@ -19,3 +19,5 @@ assets/library/*
 projects/*/work/speech*
 projects/*/work/cover-frame.jpg
 projects/*/work/*.log
+ui/inbox.jsonl
+metrics/

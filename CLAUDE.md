@@ -8,6 +8,7 @@ Design: `docs/ARCHITECTURE.md`. How to work with it: `docs/PLAYBOOK.md`. Users: 
 python3 src/build.py projects/<slug>          # THE command: 1 transcribe → 2 plan → 2b translate → 3 cards → 4 assemble → 5 package
 npm run plan     projects/<slug>              # any single step: transcribe | plan | cards | assemble | package
 python3 src/steps/4-assemble.py projects/<slug> 9x16 zh   # one aspect / one language
+python3 src/ui/server.py 7777                 # local studio UI (blueprint editor, runs the same steps, writes the same files) → http://localhost:7777
 ```
 Setup once: `brew install ffmpeg`, `npm install` (Playwright), `scripts/make-sfx.sh` (placeholder SFX/bed), a Python with `mlx-whisper` (`python3 -m venv .venv && .venv/bin/pip install mlx-whisper`).
 
@@ -30,6 +31,9 @@ templates/cards/       PiP cards & outro (HTML → PNG via Playwright, offline) 
 src/steps/1..5         the pipeline (python: 1,2,2b,4 · node: 3,5)   src/lib/  common, timeline (cuts+speed↔output time), ass (subtitle builder)
 src/llm/router.py      call(task, prompt): route → provider chain, disk cache, usage log
 src/publish/           queue + browser adapters (design + stubs)     src/monitor/  metrics pull + digest (design + stubs)
+src/ui/server.py       stdlib HTTP: /api/projects /api/project/<slug> /api/file (GET/PUT, whitelisted) /api/run (spawns a step) /api/assets /api/queue /api/inbox /media/* (Range)
+src/ui/index.html      single-page studio: 项目 · 蓝图(node graph of edit.json+profile) · 剪辑(timeline+player) · 成片 · 封面&文案 · 口播 · 交接&发布 · 队列 · 数据 · 任务箱 · 设置
+ui/inbox.jsonl         requests typed in the UI for the agent (status open → done)
 .claude/skills/        video-edit (script+recording → edit.json) · video-package (copy.json) · video-publish · speech-coach · trend-radar · sponsor-inbox
 ```
 
@@ -43,6 +47,7 @@ src/publish/           queue + browser adapters (design + stubs)     src/monitor
 - **Slug format enforced; one source file per project.**
 - **Assets need a licence line in `assets/manifest.json`** before they are used in a render.
 - Fixed process = code, judgement = skill. Don't re-derive ffmpeg graphs in prompts.
+- **UI holds no state.** Human edits in the studio UI and agent edits from the CLI touch the same files; never cache project state elsewhere.
 
 ## Verify a change
 1. `python3 src/build.py projects/2026-09-15-tangping` ends with `DONE` and no `WARN: anchor`.

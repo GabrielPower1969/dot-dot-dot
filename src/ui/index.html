@@ -1,0 +1,156 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dot-dot-dot studio</title>
+<style>
+:root{--y:#F5C518;--ink:#111;--paper:#fff;--red:#E63946;--bg:#f4f2ea;--mut:#666;--ok:#1f9d55}
+*{box-sizing:border-box}body{margin:0;font:14px/1.5 -apple-system,"PingFang SC","Noto Sans SC",Arimo,sans-serif;background:var(--bg);color:var(--ink);display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+nav{background:var(--ink);color:#fff;padding:18px 14px;position:sticky;top:0;height:100vh}nav .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;margin-bottom:22px}nav .logo i{width:34px;height:34px;border-radius:9px;background:var(--y);display:inline-block}
+nav a{display:block;color:#ddd;text-decoration:none;padding:8px 10px;border-radius:8px;margin:2px 0}nav a.on,nav a:hover{background:#2a2a2a;color:var(--y)}nav small{display:block;color:#888;margin-top:20px;line-height:1.4}
+main{padding:22px 28px;max-width:1500px}h1{font-size:22px;margin:0 0 14px}h2{font-size:16px;margin:22px 0 8px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--ink);padding:14px 16px;margin-bottom:16px}
+.grid{display:grid;gap:14px}.g3{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.g2{grid-template-columns:1fr 1fr}
+button,.btn{font:inherit;font-weight:700;background:var(--y);border:3px solid var(--ink);border-radius:9px;padding:6px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}button.ghost{background:#fff}button.red{background:var(--red);color:#fff}button:disabled{opacity:.4;cursor:default}
+.dots{display:flex;gap:6px;margin:8px 0}.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:#ddd}.dot.ok{background:var(--ok)}.dot.warn{background:var(--y)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tabs button{background:#fff}.tabs button.on{background:var(--y)}
+textarea{width:100%;min-height:260px;font:12.5px/1.45 ui-monospace,Menlo,monospace;border:2px solid var(--ink);border-radius:8px;padding:10px;background:#fffdf5}textarea.md{font-family:inherit;font-size:14px}
+pre{background:#111;color:#e8e8e8;padding:10px 12px;border-radius:8px;font-size:12px;max-height:320px;overflow:auto;white-space:pre-wrap}
+.tl{position:relative;height:56px;background:#eee;border:2px solid var(--ink);border-radius:8px;overflow:hidden;margin:8px 0}.tl .k{position:absolute;top:0;height:100%;background:#cfe8ff}.tl .c{position:absolute;top:0;height:100%;background:#f9c5c5}
+.tl .m{position:absolute;top:6px;width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);cursor:pointer}.tl .m.pop{background:var(--y)}.tl .m.ins{background:#8ec5e8;top:24px}.tl .m.sfx{background:var(--red);top:40px}.tl .cur{position:absolute;top:0;width:2px;height:100%;background:var(--ink)}
+video{width:100%;background:#000;border-radius:8px;border:2px solid var(--ink)}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:5px 7px;text-align:left;vertical-align:top}th{background:var(--y)}
+.cov{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}.cov img{width:100%;border:2px solid var(--ink);border-radius:6px;background:#000}.cov div{font-size:11px;color:var(--mut)}
+.muted{color:var(--mut)}input,select{font:inherit;border:2px solid var(--ink);border-radius:7px;padding:5px 8px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.cue{display:inline-block;margin:2px;padding:1px 6px;border-radius:6px;background:#eee;cursor:pointer;font-size:12px}.cue.skip{text-decoration:line-through;opacity:.5}
+.bp{position:relative;overflow:auto;background:#1b1b1b;border:3px solid var(--ink);border-radius:14px;padding:18px;min-height:560px;background-image:radial-gradient(#333 1px,transparent 1px);background-size:22px 22px}
+.bp svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}.lane{position:absolute;top:10px;color:#888;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.node{position:absolute;width:210px;background:#262626;color:#eee;border:2px solid #444;border-radius:10px;padding:8px 10px;font-size:12px;cursor:pointer;box-shadow:0 4px 0 #000}.node:hover,.node.sel{border-color:var(--y)}.node b{display:block;font-size:12.5px;color:#fff}.node .t{color:#aaa}.node .pin{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--y);border:2px solid #111;top:14px}.node .pin.in{left:-7px}.node .pin.out{right:-7px}
+.node.src{border-left:6px solid #8ec5e8}.node.cut{border-left:6px solid #cfe8ff}.node.pop{border-left:6px solid var(--y)}.node.ins{border-left:6px solid #8ec5e8}.node.sfx{border-left:6px solid var(--red)}.node.music{border-left:6px solid #9b6bff}.node.render{border-left:6px solid #1f9d55}.node.pkg{border-left:6px solid #fff}.node.pub{border-left:6px solid #ff9f1c}.node.add{border-style:dashed;color:#999;text-align:center}
+.insp{background:#fff;border:3px solid var(--ink);border-radius:12px;padding:12px;margin-top:12px}.insp label{display:block;font-size:12px;color:var(--mut);margin-top:6px}.insp input,.insp select{width:100%}
+.agent{background:#fffbe6;border-left:6px solid var(--y);padding:8px 12px;border-radius:6px;font-size:13px}
+</style></head><body>
+<nav><div class="logo"><i></i>dot-dot-dot</div>
+<a href="#projects" data-p="projects">项目 Projects</a><a href="#queue" data-p="queue">发布队列 Queue</a><a href="#metrics" data-p="metrics">数据 Metrics</a><a href="#inbox" data-p="inbox">任务箱 → Agent</a><a href="#settings" data-p="settings">设置 Settings</a>
+<small>人和 agent 共用同一份文件状态。<br>你在这里改的 = 我在命令行看到的。<br><span id="clock"></span></small></nav>
+<main id="main"></main>
+<script>
+const $=s=>document.querySelector(s), api=(p,o)=>fetch(p,o).then(r=>r.json()), esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const put=(path,text)=>fetch('/api/file?path='+encodeURIComponent(path),{method:'PUT',body:text}).then(r=>r.json());
+const fmt=t=>`${Math.floor(t/60)}:${(t%60).toFixed(1).padStart(4,'0')}`;
+let state={};
+function route(){const h=location.hash.slice(1)||'projects';const [p,slug,tab]=h.split('/');document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.p===p));({projects,queue,metrics,inbox,settings}[p]||projects)(slug,tab)}
+window.onhashchange=route;route();setInterval(()=>$('#clock').textContent=new Date().toLocaleTimeString(),1000);
+/* ---------- projects ---------- */
+async function projects(slug,tab){ if(slug) return project(slug,tab||'edit');
+  const ps=await api('/api/projects'); const stages=['source','transcript','plan','cards'];
+  $('#main').innerHTML=`<h1>项目</h1><div class="card"><div class="row"><input id="ns" placeholder="2026-10-01-my-topic" style="width:260px"><button onclick="newProject()">新建项目</button><span class="muted">然后把录像放进 projects/&lt;slug&gt;/source/，文稿写在 script.md</span></div></div>
+  <div class="grid g3">${ps.map(p=>`<div class="card"><b>${esc(p.slug)}</b><div>${esc(p.title.zh||'')} <span class="muted">${esc(p.title.en||'')}</span></div>
+  <div class="dots" title="source · transcript · plan · cards · videos · package · speech">${stages.map(s=>`<i class="dot ${p.has[s]?'ok':''}"></i>`).join('')}<i class="dot ${p.outputs.length?'ok':''}"></i><i class="dot ${p.covers.length?'ok':''}"></i><i class="dot ${p.has.speech?'ok':''}"></i></div>
+  <div class="muted">${p.outputs.length} 条成片 · ${p.covers.length} 张封面 · ${Object.keys(p.posts).length} 个平台文案</div><div class="row"><a class="btn" href="#projects/${p.slug}/edit">打开</a></div></div>`).join('')}</div>`}
+async function newProject(){const slug=$('#ns').value.trim();const r=await api('/api/project',{method:'POST',body:JSON.stringify({slug})});if(r.error)alert(r.error);else location.hash='#projects/'+slug+'/script'}
+async function project(slug,tab){const p=state.p=await api('/api/project/'+slug);
+  const steps=[['transcribe','1 转写'],['plan','2 规划'],['translate','2b 翻译'],['cards','3 贴片'],['assemble','4 合成'],['package','5 封面文案'],['speech','6 口播分析'],['build','全部']];
+  const tabs=[['script','文稿'],['blueprint','蓝图 编排'],['edit','剪辑'],['videos','成片'],['package','封面&文案'],['speech','口播'],['handoff','交接&发布']];
+  $('#main').innerHTML=`<h1>${esc(slug)} <span class="muted" style="font-weight:400;font-size:14px">${esc(p.title.zh||'')}</span></h1>
+  <div class="row">${steps.map(([k,l])=>`<button class="ghost" onclick="run('${slug}','${k}')">${l}</button>`).join('')}<span id="jobst" class="muted"></span></div><pre id="log" style="display:none"></pre>
+  <div class="tabs">${tabs.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="location.hash='#projects/${slug}/${k}'">${l}</button>`).join('')}</div><div id="tab"></div>`;
+  ({script:tabScript,blueprint:tabBlueprint,edit:tabEdit,videos:tabVideos,package:tabPackage,speech:tabSpeech,handoff:tabHandoff}[tab]||tabEdit)(p)}
+function editor(path,text,cls='',hint=''){const id='ed'+Math.random().toString(36).slice(2,7);return `<div class="row"><b>${esc(path.split('/').pop())}</b> <span class="muted">${hint}</span><button onclick="save('${path}','${id}')">保存</button><span id="${id}s" class="muted"></span></div><textarea id="${id}" class="${cls}">${esc(text??'')}</textarea>`}
+async function save(path,id){const t=$('#'+id).value;if(path.endsWith('.json')){try{JSON.parse(t)}catch(e){return $('#'+id+'s').textContent='JSON 有错: '+e.message}}const r=await put(path,t);$('#'+id+'s').textContent=r.ok?'已保存 '+new Date().toLocaleTimeString():r.error}
+function tabScript(p){const b=`projects/${p.slug}/`;$('#tab').innerHTML=`<div class="grid g2"><div class="card">${editor(b+'script.md',p['script.md'],'md','你写的文章')}</div><div class="card">${editor(b+'voiceover.md',p['voiceover.md'],'md','你实际念的（含结尾）— 字幕以此为准')}</div></div>
+  <div class="card"><div class="agent">给 agent：写好文稿后按「2 规划」，或者在任务箱里说「帮我剪 ${p.slug}」— agent 会按 video-edit skill 写 edit.json。</div></div>`}
+function tabEdit(p){const b=`projects/${p.slug}/`,pl=p.plan;$('#tab').innerHTML=`<div class="grid g2"><div class="card">${editor(b+'edit.json',p['edit.json'],'','锚点 = 文稿原话，不写秒数')}<div class="row"><button onclick="run('${p.slug}','plan')">重新规划</button><button class="ghost" onclick="run('${p.slug}','assemble',['16x9','zh'])">只渲染 16:9 中文</button></div></div>
+  <div class="card"><b>时间线</b> ${pl?`<span class="muted">源 ${pl.source_duration.toFixed(1)}s → 成片 ${pl.out_duration.toFixed(1)}s · 覆盖率 ${(pl.alignment.script_coverage*100).toFixed(0)}%</span>`:'<span class="muted">还没有 plan.json，先按「2 规划」</span>'}
+  ${pl?timeline(pl):''}<div class="muted">蓝 = 保留段，红 = 剪掉；黄点 = 大字，蓝点 = 贴片，红点 = 音效。点标记跳到该处。</div>
+  <div class="row"><select id="vsel" onchange="pickVideo()">${p.outputs.map(o=>`<option>${o}</option>`).join('')}</select></div><video id="vid" controls ${p.outputs[0]?`src="/media/projects/${p.slug}/output/${p.outputs[0]}"`:''}></video>
+  ${pl?`<div style="margin-top:8px">${pl.cues.zh.map(c=>`<span class="cue ${c.skipped?'skip':''}" onclick="seek(${c.s||0})">${esc(c.text)}</span>`).join('')}</div>`:''}
+  ${pl?`<h2>剪掉的</h2><table>${pl.cuts.map(c=>`<tr><td>${c.from_s.toFixed(2)}–${c.to_s.toFixed(2)}</td><td>${esc(c.why)}</td></tr>`).join('')}</table>`:''}</div></div>`;
+  const v=$('#vid');if(v)v.ontimeupdate=()=>{const cur=$('#tlcur');if(cur&&pl)cur.style.left=(v.currentTime/(pl.out_duration+4)*100)+'%'}}
+function timeline(pl){const S=pl.source_duration,O=pl.out_duration+4;let h='<div class="tl">';let t=0;
+  for(const [a,b] of pl.keeps){h+=`<div class="k" style="left:${a/S*100}%;width:${(b-a)/S*100}%"></div>`}
+  for(const c of pl.cuts){h+=`<div class="c" style="left:${c.from_s/S*100}%;width:${(c.to_s-c.from_s)/S*100}%" title="${esc(c.why)}"></div>`}
+  h+='</div><div class="tl" style="background:#f7f7f7">';
+  for(const x of pl.pops)h+=`<div class="m pop" style="left:${x.s/O*100}%" title="${esc(x.text.zh)} @${fmt(x.s)}" onclick="seek(${x.s})"></div>`;
+  for(const x of pl.inserts)h+=`<div class="m ins" style="left:${x.s/O*100}%" title="${x.card} @${fmt(x.s)}" onclick="seek(${x.s})"></div>`;
+  for(const x of pl.sfx)h+=`<div class="m sfx" style="left:${x.s/O*100}%" title="${x.name} @${fmt(x.s)}" onclick="seek(${x.s})"></div>`;
+  return h+'<div class="cur" id="tlcur"></div></div>'}
+function seek(t){const v=$('#vid');if(v){v.currentTime=Math.max(0,t-0.3);v.play()}}
+function pickVideo(){$('#vid').src=`/media/projects/${state.p.slug}/output/${$('#vsel').value}`}
+function tabVideos(p){$('#tab').innerHTML=`<div class="grid g2">${p.outputs.map(o=>`<div class="card"><b>${o}</b><video controls preload="metadata" src="/media/projects/${p.slug}/output/${o}"></video></div>`).join('')||'<div class="card muted">还没有成片，按「4 合成」</div>'}</div>`}
+function tabPackage(p){const b=`projects/${p.slug}/`;$('#tab').innerHTML=`<div class="card"><b>封面</b><div class="cov">${p.covers.map(c=>`<a href="/media/projects/${p.slug}/output/covers/${c}" target="_blank"><img src="/media/projects/${p.slug}/output/covers/${c}"><div>${c}</div></a>`).join('')}</div></div>
+  <div class="grid g2"><div class="card">${editor(b+'copy.json',p['copy.json'],'','标题/钩子/正文/标签/封面帧时间')}<div class="row"><button onclick="run('${p.slug}','package')">重新生成封面和文案</button></div></div>
+  <div class="card"><b>各平台文案</b>${Object.entries(p.posts).map(([pf,fs])=>fs.map(f=>`<details><summary>${pf} · ${f}</summary><pre id="post-${pf}-${f.length}" data-src="projects/${p.slug}/output/${pf}/${f}">loading…</pre></details>`).join('')).join('')}</div></div>`;
+  document.querySelectorAll('pre[data-src]').forEach(async el=>{el.textContent=await (await fetch('/api/file?path='+encodeURIComponent(el.dataset.src))).text()})}
+function tabSpeech(p){$('#tab').innerHTML=p.has.speech?`<div class="card">${p['speech-notes.md']!==null?editor(`projects/${p.slug}/speech-notes.md`,p['speech-notes.md'],'md','教练点评（agent 写，你可改）'):''}</div><iframe src="/media/projects/${p.slug}/work/speech-report.html" style="width:100%;height:1200px;border:3px solid var(--ink);border-radius:12px;background:#fff"></iframe>`:'<div class="card muted">还没有口播报告，按「6 口播分析」</div>'}
+function tabHandoff(p){const rows=(p.handoff||'').split('\n').filter(l=>l.startsWith('| ')&&!l.includes('platform')&&!l.includes('---')).map(l=>l.split('|').map(s=>s.trim()).filter(Boolean));
+  $('#tab').innerHTML=`<div class="card"><b>交接表</b> <span class="muted">来自 output/README.md</span><table><tr><th>平台</th><th>语言</th><th>比例</th><th>视频</th><th>封面</th><th>文案</th><th>计划时间</th><th></th></tr>
+  ${rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}<td><button onclick="enqueue('${p.slug}','${r[0]}','${r[1]}','${r[6]}')">加入队列</button></td></tr>`).join('')}</table>
+  <div class="agent" style="margin-top:10px">发布由 agent 通过你登录好的浏览器执行（video-publish skill）：填好所有字段、截图给你看、你说「发」它才点最后一下。队列文件 src/publish/queue.json 两边共用。</div></div>`}
+async function enqueue(slug,platform,lang,at){const q=await api('/api/queue');q.push({slug,platform,lang,at,status:'queued',confirmed:false,url:null});await api('/api/queue',{method:'POST',body:JSON.stringify(q)});location.hash='#queue'}
+async function run(slug,step,args=[]){const r=await api('/api/run',{method:'POST',body:JSON.stringify({slug,step,args})});const log=$('#log');log.style.display='block';const tick=async()=>{const j=await api('/api/jobs/'+r.job);log.textContent=j.log;log.scrollTop=1e9;$('#jobst').textContent=`${step}: ${j.status}`;if(j.status==='running')setTimeout(tick,1200);else if(j.status==='ok')setTimeout(route,500)};tick()}
+
+/* ---------- blueprint ---------- */
+let bpsel=null;
+async function tabBlueprint(p){const A=state.assets=state.assets||await api('/api/assets');const e=state.edit=JSON.parse(p['edit.json']||'{}');const cfg=state.cfg=state.cfg||await api('/api/config');
+  $('#tab').innerHTML=`<div class="row"><button onclick="bpSave()">保存蓝图 → edit.json</button><button class="ghost" onclick="bpSave().then(()=>run('${p.slug}','plan'))">保存并重新规划</button><button class="ghost" onclick="bpSave().then(()=>run('${p.slug}','build'))">保存并全部重跑</button><span id="bpst" class="muted"></span></div>
+  <div class="bp" id="bp"></div><div class="insp" id="insp"><span class="muted">点一个节点编辑参数；虚线节点 = 新增。锚点写文稿原话。</span></div>`;bpDraw()}
+function bpNodes(){const e=state.edit,p=state.p,cfg=state.cfg,au=cfg.profile.audio;const L=[];const lane=(k,i,extra)=>Object.assign({lane:k,i},extra);
+  L.push(lane(0,0,{id:'src',cls:'src',title:'录像 source',sub:p.outputs.length?'4K · 已转写':'待转写'}));
+  L.push(lane(1,0,{id:'cut',cls:'cut',title:'剪切 cut',sub:`重录自动 · 手动 ${(e.manual_cuts||[]).length} · 变速 ${(e.speed||[]).length}`}));
+  L.push(lane(1,1,{id:'title',cls:'cut',title:'开场标题',sub:(e.title||{}).zh||'（无）'}));
+  let i=0;(e.pops||[]).forEach((x,k)=>L.push(lane(2,i++,{id:'pop:'+k,cls:'pop',title:(x.style==='corner'?'角标 ':'大字 ')+(x.text||{}).zh,sub:'@ '+x.anchor+(x.sfx?' · '+x.sfx:'')})));
+  L.push(lane(2,i++,{id:'add:pop',cls:'add',title:'+ 大字 / 角标'}));
+  (e.inserts||[]).forEach((x,k)=>L.push(lane(2,i++,{id:'ins:'+k,cls:'ins',title:'贴片 '+x.card,sub:'@ '+x.anchor+' · '+(x.hold_s||3)+'s'})));
+  L.push(lane(2,i++,{id:'add:ins',cls:'add',title:'+ 贴片'}));
+  (e.sfx||[]).forEach((x,k)=>L.push(lane(2,i++,{id:'sfx:'+k,cls:'sfx',title:'音效 '+x.name,sub:'@ '+x.anchor})));
+  L.push(lane(2,i++,{id:'add:sfx',cls:'add',title:'+ 音效'}));
+  L.push(lane(2,i++,{id:'music',cls:'music',title:'配乐 BGM',sub:(au.bgm||'').split('/').pop()+' · '+au.bgm_db+' dB'}));
+  L.push(lane(2,i++,{id:'outro',cls:'pop',title:'片尾',sub:((e.outro||{}).headline||{}).zh||'（无）'}));
+  L.push(lane(3,0,{id:'mix',cls:'render',title:'合成 assemble',sub:'字幕 · 大字 · 贴片 · 混音 · 推近'}));
+  ['16x9 zh','16x9 en','9x16 zh','9x16 en'].forEach((v,k)=>L.push(lane(4,k,{id:'render:'+v,cls:'render',title:'渲染 '+v,sub:p.outputs.find(o=>o.includes(v.replace(' ','.')))?'✓ 已出片':'未渲染'})));
+  L.push(lane(5,0,{id:'pkg',cls:'pkg',title:'封面 + 文案',sub:p.covers.length+' 封面 · '+Object.keys(p.posts).length+' 平台'}));
+  Object.keys(cfg.platforms).filter(k=>!k.startsWith('$')).forEach((pf,k)=>L.push(lane(6,k,{id:'pub:'+pf,cls:'pub',title:pf,sub:cfg.platforms[pf].aspect+' · '+cfg.platforms[pf].languages.join('/')})));
+  return L}
+function bpDraw(){const N=bpNodes();const X=[20,270,520,790,1040,1290,1540],Y=(i)=>50+i*74;const bp=$('#bp');
+  bp.innerHTML=['素材','剪切','图层 · 声音','合成','渲染','包装','发布'].map((l,k)=>`<div class="lane" style="left:${X[k]}px">${l}</div>`).join('')+
+  N.map(n=>`<div class="node ${n.cls} ${bpsel===n.id?'sel':''}" style="left:${X[n.lane]}px;top:${Y(n.i)}px" onclick="bpPick('${n.id}')">${n.lane>0?'<i class="pin in"></i>':''}${n.lane<6?'<i class="pin out"></i>':''}<b>${esc(n.title)}</b><span class="t">${esc(n.sub||'')}</span></div>`).join('');
+  const H=Math.max(...N.map(n=>Y(n.i)+90));bp.style.height=H+'px';
+  const pos=id=>{const n=N.find(x=>x.id===id);return n&&{x:X[n.lane],y:Y(n.i)+18}};const P=(a,b)=>{const A=pos(a),B=pos(b);if(!A||!B)return'';const x1=A.x+210,x2=B.x,mx=(x1+x2)/2;return `<path d="M${x1} ${A.y} C${mx} ${A.y} ${mx} ${B.y} ${x2} ${B.y}" fill="none" stroke="#f5c518" stroke-width="2" opacity=".7"/>`};
+  let s='';const layers=N.filter(n=>n.lane===2&&n.cls!=='add').map(n=>n.id),renders=N.filter(n=>n.lane===4).map(n=>n.id),pubs=N.filter(n=>n.lane===6).map(n=>n.id);
+  s+=P('src','cut')+P('src','title')+P('title','mix');for(const l of layers)s+=P('cut',l)+P(l,'mix');for(const r of renders)s+=P('mix',r)+P(r,'pkg');for(const u of pubs)s+=P('pkg',u);
+  bp.insertAdjacentHTML('afterbegin',`<svg width="${X[6]+230}" height="${H}">${s}</svg>`)}
+function bpPick(id){bpsel=id;bpDraw();const e=state.edit,A=state.assets,au=state.cfg.profile.audio;const [k,idx]=id.split(':');const I=$('#insp');const f=(lab,html)=>`<label>${lab}</label>${html}`;
+  const opt=(list,cur)=>list.map(x=>`<option ${x===cur?'selected':''}>${x}</option>`).join('');
+  if(k==='add'){if(idx==='pop')(e.pops??=[]).push({anchor:'',text:{zh:'',en:''},hold_s:1.6});if(idx==='ins')(e.inserts??=[]).push({anchor:'',card:'quote',hold_s:3.5,vars:{zh:{},en:{}}});if(idx==='sfx')(e.sfx??=[]).push({anchor:'',name:'pop'});bpsel=idx+':'+((e[idx==='pop'?'pops':idx==='ins'?'inserts':'sfx']).length-1);return bpPick(bpsel)}
+  const bind=(path)=>`oninput="bpSet('${path}',this.value)"`;
+  if(k==='pop'){const x=e.pops[idx];I.innerHTML=`<b>大字 / 角标</b>${f('锚点（文稿原话）',`<input value="${esc(x.anchor)}" ${bind('pops.'+idx+'.anchor')}>`)}${f('第几次出现',`<input type=number value="${x.occurrence||1}" ${bind('pops.'+idx+'.occurrence')}>`)}${f('中文',`<input value="${esc(x.text.zh)}" ${bind('pops.'+idx+'.text.zh')}>`)}${f('English',`<input value="${esc(x.text.en)}" ${bind('pops.'+idx+'.text.en')}>`)}${f('停留秒',`<input type=number step=0.1 value="${x.hold_s||1.6}" ${bind('pops.'+idx+'.hold_s')}>`)}${f('样式',`<select ${bind('pops.'+idx+'.style')}>${opt(['big','corner'],x.style||'big')}</select>`)}${f('音效',`<select ${bind('pops.'+idx+'.sfx')}>${opt(['(默认 pop)',...A.sfx.map(s=>s.replace('.wav',''))],x.sfx||'(默认 pop)')}</select>`)}<div class="row"><button class="red" onclick="bpDel('pops',${idx})">删除节点</button></div>`}
+  else if(k==='ins'){const x=e.inserts[idx];I.innerHTML=`<b>贴片</b>${f('锚点',`<input value="${esc(x.anchor)}" ${bind('inserts.'+idx+'.anchor')}>`)}${f('第几次出现',`<input type=number value="${x.occurrence||1}" ${bind('inserts.'+idx+'.occurrence')}>`)}${f('卡片模板',`<select ${bind('inserts.'+idx+'.card')}>${opt(A.cards.filter(c=>c!=='outro'),x.card)}</select>`)}${f('停留秒',`<input type=number step=0.1 value="${x.hold_s||3.5}" ${bind('inserts.'+idx+'.hold_s')}>`)}${f('变量 (JSON: {zh:{…},en:{…}})',`<textarea style="min-height:120px" oninput="bpSetJson('inserts.${idx}.vars',this)">${esc(JSON.stringify(x.vars||{},null,1))}</textarea>`)}<div class="row"><button class="red" onclick="bpDel('inserts',${idx})">删除节点</button></div>`}
+  else if(k==='sfx'){const x=e.sfx[idx];I.innerHTML=`<b>音效</b>${f('锚点',`<input value="${esc(x.anchor)}" ${bind('sfx.'+idx+'.anchor')}>`)}${f('文件 (assets/sfx)',`<select ${bind('sfx.'+idx+'.name')}>${opt(A.sfx.map(s=>s.replace('.wav','')),x.name)}</select> <audio controls style="height:28px;margin-top:4px" src="/media/assets/sfx/${x.name}.wav"></audio>`)}<div class="row"><button class="red" onclick="bpDel('sfx',${idx})">删除节点</button></div>`}
+  else if(k==='music'){I.innerHTML=`<b>配乐 BGM</b> <span class="muted">存在 config/profile.json（全局默认）；每条视频的场景配乐是 v0.2 功能</span>${f('文件 (assets/music)',`<select oninput="state.cfg.profile.audio.bgm='assets/music/'+this.value;state.cfgDirty=1">${opt(A.music,(au.bgm||'').split('/').pop())}</select>`)}${f('音量 dB',`<input type=number value="${au.bgm_db}" oninput="state.cfg.profile.audio.bgm_db=+this.value;state.cfgDirty=1">`)}<audio controls style="width:100%;margin-top:6px" src="/media/${au.bgm}"></audio><div class="muted" style="margin-top:6px">授权：${(A.manifest.find(m=>au.bgm.endsWith(m.file))||{}).licence||'未登记 — 先在 assets/manifest.json 加一行'}</div>`}
+  else if(k==='cut'){I.innerHTML=`<b>剪切</b>${f('手动剪掉 (JSON 数组 from_s/to_s/why)',`<textarea style="min-height:90px" oninput="bpSetJson('manual_cuts',this)">${esc(JSON.stringify(e.manual_cuts||[],null,1))}</textarea>`)}${f('变速 (JSON 数组 from_s/to_s/factor)',`<textarea style="min-height:70px" oninput="bpSetJson('speed',this)">${esc(JSON.stringify(e.speed||[],null,1))}</textarea>`)}${f('推近交替倍率',`<input value="${esc(JSON.stringify(e.punch_in||[1,1.12]))}" oninput="bpSetJson('punch_in',this)">`)}`}
+  else if(k==='title'){e.title??={};e.subtitle??={};I.innerHTML=`<b>开场标题</b>${f('中文',`<input value="${esc(e.title.zh||'')}" ${bind('title.zh')}>`)}${f('English',`<input value="${esc(e.title.en||'')}" ${bind('title.en')}>`)}${f('副标题 中文',`<input value="${esc(e.subtitle.zh||'')}" ${bind('subtitle.zh')}>`)}${f('副标题 English',`<input value="${esc(e.subtitle.en||'')}" ${bind('subtitle.en')}>`)}`}
+  else if(k==='outro'){e.outro??={headline:{}};I.innerHTML=`<b>片尾</b>${f('中文',`<input value="${esc(e.outro.headline?.zh||'')}" ${bind('outro.headline.zh')}>`)}${f('English',`<input value="${esc(e.outro.headline?.en||'')}" ${bind('outro.headline.en')}>`)}<div class="muted">logo/CTA 来自 config/profile.json</div>`}
+  else if(k==='mix'){I.innerHTML=`<b>合成</b> <span class="muted">全局参数在 config/profile.json（字幕字号、大字样式、贴片宽度、音量）</span><div class="row"><button onclick="run('${state.p.slug}','assemble')">渲染全部四条</button></div>`}
+  else if(k==='render'){I.innerHTML=`<b>渲染 ${idx}</b><div class="row"><button onclick="run('${state.p.slug}','assemble',${JSON.stringify(idx.split(' '))})">只渲染这一条</button></div>`}
+  else if(k==='pkg'){I.innerHTML=`<b>封面 + 文案</b> <span class="muted">参数在 copy.json（「封面&文案」页）</span><div class="row"><button onclick="run('${state.p.slug}','package')">重新生成</button></div>`}
+  else if(k==='pub'){const pf=state.cfg.platforms[idx];I.innerHTML=`<b>${idx}</b><div class="muted">${pf.publish} · 比例 ${pf.aspect} · 标题上限 ${pf.title_max||'—'} · 标签 ${pf.tags_max}</div>${f('计划时间',`<input id="pubat" value="${esc((JSON.parse(state.p['copy.json']||'{}').schedule)||'')}">`)}<div class="row"><button onclick="enqueue('${state.p.slug}','${idx}','${pf.languages[0]}',$('#pubat').value)">加入发布队列</button></div>`}
+  else I.innerHTML=`<b>${esc(id)}</b><div class="muted">源文件在 projects/${state.p.slug}/source/</div>`}
+function bpSet(path,v){const ks=path.split('.');let o=state.edit;for(const k of ks.slice(0,-1)){o=o[k]??=(isNaN(ks[ks.indexOf(k)+1])?{}:[])}const last=ks.at(-1);if(v==='(默认 pop)'){delete o[last]}else o[last]=(/^(hold_s|occurrence)$/.test(last))?+v:v;$('#bpst').textContent='未保存的修改'}
+function bpSetJson(path,el){try{const v=JSON.parse(el.value);el.style.borderColor='';bpSet(path,v)}catch(e){el.style.borderColor='red'}}
+function bpDel(list,i){state.edit[list].splice(i,1);bpsel=null;bpDraw();$('#insp').innerHTML='<span class="muted">已删除，记得保存</span>';$('#bpst').textContent='未保存的修改'}
+async function bpSave(){const slug=state.p.slug;await put(`projects/${slug}/edit.json`,JSON.stringify(state.edit,null,2));if(state.cfgDirty){await put('config/profile.json',JSON.stringify(state.cfg.profile,null,2));state.cfgDirty=0}$('#bpst').textContent='已保存 '+new Date().toLocaleTimeString();state.p['edit.json']=JSON.stringify(state.edit,null,2);bpDraw()}
+
+/* ---------- queue ---------- */
+async function queue(){const q=await api('/api/queue');$('#main').innerHTML=`<h1>发布队列</h1><div class="card"><table><tr><th>项目</th><th>平台</th><th>语言</th><th>时间</th><th>状态</th><th>已确认</th><th>链接</th><th></th></tr>
+  ${q.map((r,i)=>`<tr><td>${esc(r.slug)}</td><td>${esc(r.platform)}</td><td>${esc(r.lang)}</td><td><input value="${esc(r.at)}" onchange="qset(${i},'at',this.value)" style="width:200px"></td><td><select onchange="qset(${i},'status',this.value)">${['queued','prepared','confirmed','posted','failed'].map(s=>`<option ${s===r.status?'selected':''}>${s}</option>`).join('')}</select></td><td><input type="checkbox" ${r.confirmed?'checked':''} onchange="qset(${i},'confirmed',this.checked)"></td><td>${r.url?`<a href="${esc(r.url)}" target="_blank">打开</a>`:''}</td><td><button class="red" onclick="qdel(${i})">删</button></td></tr>`).join('')||'<tr><td colspan=8 class="muted">空。在项目的「交接&发布」里加入。</td></tr>'}</table>
+  <div class="row"><button onclick="qsave()">保存队列</button><span class="muted">「已确认」打勾 = 允许 agent 点最后的发布键。</span></div></div>`;state.q=q}
+function qset(i,k,v){state.q[i][k]=v}async function qdel(i){state.q.splice(i,1);await qsave()}async function qsave(){await api('/api/queue',{method:'POST',body:JSON.stringify(state.q)});queue()}
+/* ---------- metrics ---------- */
+async function metrics(){const m=await api('/api/metrics');const by={};for(const r of m){(by[r.slug+'/'+r.platform]??=[]).push(r)}
+  $('#main').innerHTML=`<h1>数据</h1>${Object.keys(by).length?Object.entries(by).map(([k,rs])=>`<div class="card"><b>${esc(k)}</b><table><tr><th>时间</th><th>播放</th><th>赞</th><th>评论</th><th>收藏</th><th>分享</th></tr>${rs.map(r=>`<tr><td>${esc(r.t)}</td><td>${r.views??''}</td><td>${r.likes??''}</td><td>${r.comments??''}</td><td>${r.saves??''}</td><td>${r.shares??''}</td></tr>`).join('')}</table></div>`).join(''):'<div class="card muted">还没有数据。发布后 monitor 会把 +1h/+24h/+7d/+30d 的数字写进 metrics/&lt;slug&gt;.jsonl，这里自动出现。</div>'}`}
+/* ---------- inbox ---------- */
+async function inbox(){const rows=await api('/api/inbox');const ps=await api('/api/projects');
+  $('#main').innerHTML=`<h1>任务箱 → Agent</h1><div class="card"><div class="agent">这里写的每一条会追加到 <code>ui/inbox.jsonl</code>。在 Claude Code 里说「看任务箱」，agent 就按 skill 逐条处理并把状态改成 done。</div>
+  <div class="row"><select id="ibslug"><option value="">（不限项目）</option>${ps.map(p=>`<option>${p.slug}</option>`).join('')}</select></div><textarea id="ibtext" class="md" style="min-height:90px" placeholder="例：把「垄断」的大字改成红色；给小红书再出三个标题；这条明晚 7 点发抖音"></textarea>
+  <div class="row"><button onclick="ibsend()">交给 agent</button></div></div>
+  <div class="card"><table><tr><th>时间</th><th>项目</th><th>内容</th><th>状态</th></tr>${rows.reverse().map(r=>`<tr><td>${esc(r.t)}</td><td>${esc(r.slug||'')}</td><td>${esc(r.text)}</td><td>${esc(r.status)}</td></tr>`).join('')}</table></div>`}
+async function ibsend(){const text=$('#ibtext').value.trim();if(!text)return;await api('/api/inbox',{method:'POST',body:JSON.stringify({slug:$('#ibslug').value||null,text})});inbox()}
+/* ---------- settings ---------- */
+async function settings(){const c=await api('/api/config');$('#main').innerHTML=`<h1>设置</h1><div class="grid g2"><div class="card">${editor('config/profile.json',JSON.stringify(c.profile,null,2),'','个人风格 — 改一次，所有视频生效')}</div><div class="card">${editor('config/platforms.json',JSON.stringify(c.platforms,null,1),'','平台规格')}</div><div class="card">${editor('config/llm.json',JSON.stringify(c.llm,null,2),'','模型分级路由；密钥只放环境变量')}</div></div>`}
+</script></body></html>

@@ -1,0 +1,1 @@
+{ "version": "0.0.1", "configurations": [ { "name": "studio", "runtimeExecutable": "python3", "runtimeArgs": ["src/ui/server.py", "7777"], "port": 7777 } ] }

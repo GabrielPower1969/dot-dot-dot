@@ -19,3 +19,6 @@ Checklist (write the answers straight into `edit.json`):
 10. Report: cuts made (with seconds and why), coverage, TODOs (missing licensed music, logo), and 3 things you'd change in the next recording.
 
 Never: use seconds as anchors (except manual_cuts/speed), edit templates or profile for one video, ship ASR text as subtitles.
+
+## Studio UI inbox
+`ui/inbox.jsonl` holds requests typed in the local UI (`python3 src/ui/server.py`). When the user says 看任务箱 / check the inbox: process rows with `status: "open"` in order, do the work with the relevant skill, then rewrite the row with `"status": "done"` and a one-line `"result"`.

@@ -47,6 +47,18 @@ Write `script.md` (what you wrote), `voiceover.md` (what you actually said, incl
 `edit.json` (`.claude/skills/video-edit`) and `copy.json` (`video-package`). Everything the agent decides is a small JSON
 you can read and change; everything fixed about *you* is in `config/profile.json`.
 
+## Studio UI (blueprint, not a timeline)
+
+```bash
+python3 src/ui/server.py        # → http://localhost:7777
+```
+A local single-page app with **no state of its own**: it reads and writes the same JSON/markdown files the agent uses.
+The **蓝图 / Blueprint** view shows a video as a node graph — source → cut → layers (pops, cards, SFX, music) → assemble →
+4 renders → package → platforms — like Unreal Blueprints or n8n, but every node is a line of `edit.json` or `profile.json`.
+Click a node to change its anchor, text, hold time, sound; save; press *re-plan* or *rebuild*. Other tabs: timeline with cuts
+and markers over the player, covers and posts, the speech-coach report, a publish queue, metrics, and an **inbox** where you
+type requests the agent picks up (`ui/inbox.jsonl`). The backend is the agent plus the pipeline; the app is a window onto the files.
+
 ## Design principles
 
 1. **Your style is config, not prompts.** Fonts, colours, cut rules, sound levels, outro — `config/profile.json`. Changed once, applied forever.
@@ -72,7 +84,7 @@ you can read and change; everything fixed about *you* is in `config/profile.json
 横版 16:9 + 竖版 9:16、中文 + 英文、十个平台的封面尺寸和文案、发布队列、播放数据回流。个人风格写在 `config/profile.json`，
 每条视频的判断写在 `projects/<slug>/edit.json`，位置一律用文稿里的原话做锚点，不用秒数。
 
-- 一条命令：`python3 src/build.py projects/<日期-主题>`
+- 一条命令：`python3 src/build.py projects/<日期-主题>`；本地界面：`python3 src/ui/server.py`（蓝图节点编排，不是时间线剪辑器；界面无状态，和 agent 共用同一批文件）
 - 样例：`projects/2026-09-15-tangping/`（《躺平》：149 秒素材 → 4 条成片 + 10 张封面 + 12 篇文案）
 - 授权：个人免费（PolyForm Noncommercial），商用需付费授权，见 `LICENSE.md`
 - 本地渲染、本地转写，录音不出电脑；LLM 只负责文字，贵模型做判断、便宜模型做翻译摘要，桌面端 agent 做品味
