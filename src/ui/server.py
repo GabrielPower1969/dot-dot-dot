@@ -11,7 +11,8 @@ WRITABLE = ("projects/", "config/", "memory/", "src/publish/queue.json", "ui/inb
 STEPS = {"transcribe": ["python3", "src/steps/1-transcribe.py"], "plan": ["python3", "src/steps/2-plan-edit.py"],
          "translate": ["python3", "src/steps/2b-translate.py"], "cards": ["node", "src/steps/3-render-cards.js"],
          "assemble": ["python3", "src/steps/4-assemble.py"], "package": ["node", "src/steps/5-package.js"],
-         "speech": [os.environ.get("CM_WHISPER_PYTHON", "python3"), "src/steps/6-speech-report.py"], "build": ["python3", "src/build.py"]}
+         "speech": [os.environ.get("CM_WHISPER_PYTHON", "python3"), "src/steps/6-speech-report.py"], "titles": ["python3", "src/steps/5b-titles.py"], "build": ["python3", "src/build.py"],
+         "queue_plan": ["node", "src/publish/queue.mjs", "plan"], "queue_run_now": ["node", "src/publish/queue.mjs", "run", "--now", "--only"], "queue_login": ["node", "src/publish/queue.mjs", "login"]}
 JOBS = {}
 
 def safe(rel):
@@ -35,7 +36,7 @@ def project_info(d):
 def run_step(slug, step, args):
     jid = uuid.uuid4().hex[:8]; JOBS[jid] = {"status": "running", "log": "", "step": step, "slug": slug, "t0": time.time()}
     def go():
-        cmd = [*STEPS[step], f"projects/{slug}", *args]
+        cmd = [*STEPS[step], (slug if step.startswith("queue_") else f"projects/{slug}"), *args]
         JOBS[jid]["log"] = "$ " + " ".join(cmd) + "\n"
         p = subprocess.Popen(cmd, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         for line in p.stdout: JOBS[jid]["log"] += line

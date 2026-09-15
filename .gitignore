@@ -32,3 +32,8 @@ templates/cards/_theme.css
 projects/*/materials/*
 !projects/*/materials/README.md
 !projects/*/materials/materials.json
+src/publish/queue.json
+src/publish/receipts.jsonl
+ui/screens/
+ui/publish.log
+ui/publish.err

@@ -96,7 +96,7 @@ JSON it must write, and what it must *not* do (no seconds as anchors, no templat
 - **Browser, not APIs.** Douyin/小红书/快手/B站 have no creator upload API for individuals; YouTube/LinkedIn/Meta do but
   quota and review make them worse than the web studio for one person. So: Playwright with a *persistent profile*
   (`~/.dotdotdot/browser/<platform>`) that you log into once; the agent drives the same pages you would.
-- **Queue file, not a scheduler service.** `publish/queue.json` rows `{slug, platform, lang, at, status}`; `queue.py run`
+- **Queue file, not a scheduler service.** `publish/queue.json` rows `{slug, platform, lang, at, status}`; `queue.mjs run`
   is called by cron/launchd every 15 min. No Redis, no Celery — one creator, ten posts a week.
 - **Two-step confirmation.** Adapters fill everything and stop at the final button unless the row has `"confirmed": true`
   set by you (or by the desktop agent after you said yes in chat). Credentials never enter prompts.

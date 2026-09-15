@@ -11,7 +11,7 @@ for t in ("ffmpeg", "ffprobe", "node"): need(t)
 if not (ROOT/"node_modules/playwright").exists(): print("FAIL: run `npm install` first (Playwright renders cards/covers)"); sys.exit(1)
 proj = sys.argv[1]; extra = sys.argv[2:]
 steps = [["python3", "src/steps/1-transcribe.py"], ["python3", "src/steps/2-plan-edit.py"], ["python3", "src/steps/2b-translate.py"],
-         ["node", "src/steps/3-render-cards.js"], ["python3", "src/steps/4-assemble.py"], ["node", "src/steps/5-package.js"]]
+         ["node", "src/steps/3-render-cards.js"], ["python3", "src/steps/4-assemble.py"], ["python3", "src/steps/5b-titles.py"], ["node", "src/steps/5-package.js"]]
 for s in steps:
     print(f"\n== {s[1]}"); r = subprocess.run([*s, proj, *extra], cwd=ROOT)
     if r.returncode not in (0, 2): sys.exit(r.returncode)   # 2 = translate needs a human; keep going

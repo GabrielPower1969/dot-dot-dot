@@ -1,0 +1,12 @@
+{
+  "$comment": "Publishing behaviour. auto_confirm=false: adapters fill everything, screenshot, stop at the final button (row.status=prepared) until you tick 'confirmed' in the UI. auto_confirm=true: fully automatic. Browser profiles live OUTSIDE the repo; log in once per platform with `node src/publish/queue.mjs login <platform>`.",
+  "auto_confirm": false,
+  "headless": false,
+  "profile_dir": "~/.dotdotdot/browser",
+  "stagger_min": 20,
+  "default_hour_local": 19,
+  "retry_max": 2,
+  "screens_dir": "ui/screens",
+  "receipts": "src/publish/receipts.jsonl",
+  "title_source": "copy.json (auto-written by src/steps/5b-titles.py when missing; edit by hand or in the UI to override)"
+}

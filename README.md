@@ -28,7 +28,9 @@ that follows *your* rules, on *your* machine.
 | **Cards** | HTML → PNG, offline | map, quote, checklist, outro; one template, two languages |
 | **Assemble** | ffmpeg + libass | 16:9 and 9:16 from one 4K source (face-centred crop, alternating punch-in on every jump cut, speed ramps), burned-in subtitles with keyword highlight, animated big words, lower-third title, outro card, loudness-normalised voice, bed music, SFX |
 | **Package** | HTML → PNG | covers in every platform's size, per-platform post copy with hashtag limits, a hand-off README |
-| **Publish / Monitor** | design + stubs | see `docs/ARCHITECTURE.md` §6–7; adapters are the first community plug-in point |
+| **Titles** | LLM (cheap tier) | `copy.json` auto-written: per-platform titles within limits, hook, body, hashtags, cover title options — you edit, never retype |
+| **Publish** | Playwright in *your* logged-in browser profile | `queue.mjs plan` schedules every platform (staggered), launchd runs the queue every 15 min, adapters upload video + cover + copy + schedule time and stop at the final button until a row is confirmed (or `auto_confirm`). Adapters are data files; unverified until your first run |
+| **Monitor** | design + stubs | see `docs/ARCHITECTURE.md` §8 |
 
 Sample: `projects/2026-09-15-tangping/` — a 149 s talking-head recording became 4 videos, 10 covers and 12 posts.
 
@@ -58,6 +60,18 @@ The **蓝图 / Blueprint** view shows a video as a node graph — source → cut
 Click a node to change its anchor, text, hold time, sound; save; press *re-plan* or *rebuild*. Other tabs: timeline with cuts
 and markers over the player, covers and posts, the speech-coach report, a publish queue, metrics, and an **inbox** where you
 type requests the agent picks up (`ui/inbox.jsonl`). The backend is the agent plus the pipeline; the app is a window onto the files.
+
+## Publishing, fully automatic once you say so
+
+```bash
+node src/publish/queue.mjs login xiaohongshu      # once per platform: log in in the window that opens, close it
+node src/publish/queue.mjs plan projects/<slug>   # one row per platform×language from copy.json publish_order + schedule
+scripts/install-scheduler.sh                       # launchd: run the queue every 15 minutes
+```
+Each row: upload the right aspect, set the cover PNG for that platform, paste title/body/hashtags within the platform's limits,
+set the schedule time, screenshot, and either stop (`prepared`, waiting for your ✓) or submit (`posted`, URL in `receipts.jsonl`).
+`config/publish.json → auto_confirm: true` removes the wait. When a platform changes its page, the row becomes `needs_human`
+with a `*-FAILED.png`; fix one locator line in `src/publish/adapters/<platform>.mjs`.
 
 ## Design system and covers
 
@@ -98,6 +112,7 @@ delegated to that skill (installed separately, AGPL-3.0). Thumbnail rules and th
 
 - 一条命令：`python3 src/build.py projects/<日期-主题>`；本地界面：`python3 src/ui/server.py`（蓝图节点编排，不是时间线剪辑器；界面无状态，和 agent 共用同一批文件）
 - 样例：`projects/2026-09-15-tangping/`（《躺平》：149 秒素材 → 4 条成片 + 10 张封面 + 12 篇文案）
+- 发布：每个平台登录一次，之后 `queue.mjs plan` 排队 + launchd 定时跑；自动上传视频、填封面、贴标题文案、设定时；默认到最后一步停下等你确认，`auto_confirm` 打开就全自动
 - 封面由你选：选帧、选标题、选字体、选版式（编辑纸面 / 瑞士 / 照片 / 描边），每个变体出全平台尺寸 + 120px 缩略对比；配色是 `config/themes.json` 里的九套主题（改编自归藏社交卡片 skill），一条视频一套主题
 - 授权：个人免费（PolyForm Noncommercial），商用需付费授权，见 `LICENSE.md`
 - 本地渲染、本地转写，录音不出电脑；LLM 只负责文字，贵模型做判断、便宜模型做翻译摘要，桌面端 agent 做品味

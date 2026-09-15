@@ -34,7 +34,12 @@ templates/cards/       PiP cards & outro, editorial system (_base.css imports ge
 src/lib/theme.py|js    profile.brand.theme → tokens; writes templates/cards/_theme.css before every render; ASS pops/lower-third/outro use the same tokens
 src/steps/1..5         the pipeline (python: 1,2,2b,4 · node: 3,5)   src/lib/  common, timeline (cuts+speed↔output time), ass (subtitle builder)
 src/llm/router.py      call(task, prompt): route → provider chain, disk cache, usage log
-src/publish/           queue + browser adapters (design + stubs)     src/monitor/  metrics pull + digest (design + stubs)
+src/publish/queue.mjs  plan <slug> | list | login <platform> | run [--now] [--only slug] | confirm | clear-done. State: queue.json (shared with UI), receipts.jsonl
+src/publish/adapters/  _base.mjs (persistent Playwright context per platform at ~/.dotdotdot/browser, step runner with multi-locator fallback, stops before submit unless row.confirmed) + one DATA adapter per platform (youtube bilibili xiaohongshu douyin kuaishou tiktok instagram facebook linkedin) — all verified: null until first real run; fix locators from ui/screens/*-FAILED.png
+config/publish.json    auto_confirm (false = stop at final button), headless, stagger_min, default_hour_local, retry_max
+scripts/install-scheduler.sh  launchd job every 15 min → queue run
+src/steps/5b-titles.py auto-writes copy.json (titles/hook/body/hashtags per platform + cover title options) via llm routes copy_zh/copy_en when missing; keeps cover blocks
+src/monitor/           metrics pull + digest (design + stubs)
 src/ui/server.py       stdlib HTTP: /api/projects /api/project/<slug> /api/file (GET/PUT, whitelisted) /api/run (spawns a step) /api/assets /api/queue /api/inbox /media/* (Range)
 src/ui/index.html      single-page studio: 项目 · 蓝图(node graph) · 剪辑(timeline+player) · 成片 · 封面选型(contact sheet → pick frame/title/font/style → variants + 120px strip) · 文案 · 口播 · 交接&发布 · 队列 · 数据 · 任务箱 · 设置
 ui/inbox.jsonl         requests typed in the UI for the agent (status open → done)
@@ -54,6 +59,7 @@ ui/inbox.jsonl         requests typed in the UI for the agent (status open → d
 - Fixed process = code, judgement = skill. Don't re-derive ffmpeg graphs in prompts.
 - **Design system:** one theme per video from `config/themes.json`; accent used once per frame; editorial type is regular weight + wide tracking; never the yellow/black sticker look. Fonts only from `fonts.json`.
 - **Covers are chosen by the creator.** `copy.<lang>.cover` = {frame_s, kicker, title_html, variants[{font,style,size}], pick}. Step 5 renders every variant (`.vN.png`) + `legibility-<lang>.png`; the pick is copied to the unsuffixed name.
+- **Publishing is the creator's browser, the creator's flag.** Adapters run in his logged-in persistent profile; `confirmed` per row (or `auto_confirm`) is the only thing that presses a publish button. Credentials never enter code, prompts or the repo.
 - **UI holds no state.** Human edits in the studio UI and agent edits from the CLI touch the same files; never cache project state elsewhere.
 
 ## Verify a change
